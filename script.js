@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Global Temperature Anomalies",
             category: "Heat Index",
             image: "https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?q=80&w=1200&auto=format&fit=crop",
-            description: "<p>An interactive dashboard revealing surface temperature spikes across the globe over the last 50 years.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p>",
+            description: "<p>An interactive dashboard revealing surface temperature spikes across the globe over the last 50 years.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p>",
             software: [
                 { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
@@ -116,13 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
         modalImage.src = project.image;
         modalTitle.textContent = project.title;
         if (deeperDiveLink) deeperDiveLink.href = `content/project-${project.id}.html`;
-        
+
         modalDescription.innerHTML = project.description || '<p>No detailed description available.</p>';
-        
+
         // Dynamically populate modal-skills
         if (modalSkills && project.software && project.skills) {
             let skillsHTML = '';
-            
+
             project.software.forEach(sw => {
                 skillsHTML += `
                 <div class="modal-software-icon">
@@ -141,10 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
         if (modal) modal.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
     if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
@@ -182,8 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close on click outside drawer
     document.addEventListener('click', (e) => {
-        if (aboutDrawer && aboutDrawer.classList.contains('open') && 
-            !aboutDrawer.contains(e.target) && 
+        if (aboutDrawer && aboutDrawer.classList.contains('open') &&
+            !aboutDrawer.contains(e.target) &&
             (!menuToggle || !menuToggle.contains(e.target))) {
             aboutDrawer.classList.remove('open');
         }
@@ -192,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth Scroll
     const scrollDownBtn = document.querySelector('.scroll-down');
     if (scrollDownBtn) {
-        scrollDownBtn.addEventListener('click', function(e) {
+        scrollDownBtn.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {

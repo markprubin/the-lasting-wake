@@ -297,15 +297,23 @@ h1 {
     }
 }
 
+.modal-left-column {
+    flex: 1.4;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    max-height: 70vh;
+}
+
 .modal-scrollable-content {
-    flex: 1.4; /* Give text more width */
+    flex: 1;
     color: var(--text-muted);
+    min-height: 0;
+    overflow-y: auto;
 }
 
 @media (min-width: 768px) {
     .modal-scrollable-content {
-        overflow-y: auto;
-        max-height: 65vh; /* Independent scrolling area */
         padding-right: 2rem;
     }
 }
