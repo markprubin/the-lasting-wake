@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const projects = [
         {
             id: 1,
-            title: "Global Temperature Anomalies",
-            category: "Heat Index",
-            image: "https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?q=80&w=1200&auto=format&fit=crop",
-            description: "<p>An interactive dashboard revealing surface temperature spikes across the globe over the last 50 years.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p>",
+            title: "Polar Sea Ice in Decline",
+            category: "Climate Analysis",
+            image: "content/images/project-1-dashboard.png",
+            description: "<p>A stacked dual-panel dot plot comparing monthly sea ice extent anomalies at both poles from 1979 to 2024, revealing contrasting decline patterns — the Arctic's steady erosion versus Antarctica's sudden post-2016 collapse.</p>",
             software: [
-                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
-                { name: "SQL", src: "https://img.icons8.com/?size=96&id=J6KcaRLsTgpZ&format=png" }
+                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
+                { name: "Excel", src: "https://img.icons8.com/?size=96&id=y5utoW4FUM92&format=png" }
             ],
-            skills: ["Data Analysis", "Climate Science", "Web Scraping"]
+            skills: ["Data Analysis", "Climate Science", "Data Visualization"]
         },
         {
             id: 2,

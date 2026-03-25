@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Temperature Anomalies | The Lasting Wake</title>
+    <title>Polar Sea Ice in Decline | The Lasting Wake</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -23,7 +23,12 @@
 
     <!-- Hidden Menu Drawer -->
     <nav class="about-drawer" id="about-drawer">
-        <a href="../index.html" class="drawer-home-icon" aria-label="Home"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
+        <a href="../index.html" class="drawer-home-icon" aria-label="Home">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+        </a>
         <button class="close-drawer" id="close-drawer" aria-label="Close Menu">&times;</button>
         <div class="drawer-content">
             <ul class="drawer-nav">
@@ -39,46 +44,195 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
-    <main class="page-content">
+    <main class="page-content" style="max-width: 1000px;">
         <a href="../index.html#portfolio" class="back-link">&larr; Back to Portfolio</a>
-        
-        <h1 class="page-title" style="font-size: 3.5rem;">Global Temperature Anomalies</h1>
-        <div class="project-meta">
-            <span class="category-tag">Heat Index</span>
-        </div>
 
-        <img src="https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?q=80&w=1200&auto=format&fit=crop" class="hero-image" alt="Project Overview">
+        <h1 class="page-title" style="font-size: 3rem; line-height: 1.15;">Polar Sea Ice in Decline: Arctic Steady, Antarctic Sudden</h1>
+        <p class="page-subtitle" style="font-size: 1.4rem;">Visualizing 45 years of polar sea ice loss through monthly anomalies</p>
+
+        <img src="images/project-1-dashboard.png" class="hero-image" alt="Polar Sea Ice Dashboard">
 
         <div class="text-block">
-            <p>This project explores a century of global temperature anomalies using robust spatial mapping to uncover the rapidly increasing thresholds of planetary warming.</p>
-            
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-main);">Technical Documentation</h2>
-            <div style="background: rgba(255,255,255,0.6); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                <h3>Data Sources</h3>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                    <li>NOAA Global Surface Temperature Anomalies (1880-2024).</li>
-                    <li>NASA Earth Observatory Dataset parsing.</li>
-                </ul>
 
-                <h3>Methodology</h3>
-                <p>The dataset was meticulously cleansed utilizing a robust Python backend pipeline comprising of Pandas and NumPy for dropping standard deviations below the critical noise floor threshold bounds.</p>
+            <!-- The Situation -->
+            <div style="background: rgba(255,255,255,0.6); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 3rem;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main);">The Situation</h2>
+                <p>Both polar ice caps are losing ice — but in fundamentally different ways. The Arctic has been in slow, steady decline for decades. The Antarctic held stable for years, then collapsed almost overnight. How do you show both stories in a single view that makes the contrast unmistakable?</p>
+            </div>
 
-                <h3>Tableau Operations</h3>
+            <!-- What I Created -->
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-main);">What I Created</h2>
+            <p>A stacked dual-panel dot plot comparing monthly sea ice extent anomalies at both poles from 1979 to 2024, measured against the 1981–2010 climatological baseline.</p>
+
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0 3rem;">
+                <!-- Antarctic -->
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">1 · Antarctic Panel (Top)</h3>
+                    <p>Monthly anomalies show decades of stability, with dots hovering near or above zero through 2014. Then a dramatic plunge: starting in 2016, the dots shift decisively into negative territory. A highlighted annotation box draws attention to the post-2016 regime shift, where September 2023 set a record low of 16.96 M km². Scientists are still debating whether this represents a permanent structural change in Antarctic sea ice behavior.</p>
+                </div>
+                <!-- Arctic -->
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">2 · Arctic Panel (Bottom)</h3>
+                    <p>A textbook climate signal. Blue dots (positive anomalies) dominate the early record, gradually giving way to an unmistakable sea of dark red by the 2010s and 2020s. The descent is steady and relentless — no recovery, no reversal. By 2024, the annual anomaly reached −1.42 M km², the largest on record. Summer months show the most extreme departures, with September anomalies exceeding −2 M km².</p>
+                </div>
+                <!-- Color Scale -->
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">3 · Diverging Color Scale</h3>
+                    <p>A shared blue-to-red color encoding (ranging from −2.88 to +1.37 M km²) allows instant visual comparison. Blue dots represent months with more ice than the baseline average; red dots represent months with less. The color gradient turns the raw numbers into an intuitive visual language — and the overwhelming shift from blue to red across both panels tells the story at a glance.</p>
+                </div>
+            </div>
+
+            <!-- Why It Matters -->
+            <div style="background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(255,140,105,0.08)); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 3rem;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main);">Why It Matters</h2>
+                <p>Polar sea ice is a critical indicator of global climate health. Arctic ice loss accelerates warming through reduced albedo, while Antarctic ice instability carries implications for global sea level rise. These visualizations give researchers, educators, policymakers, and journalists an immediate understanding of the pace and pattern of change at both poles — and the alarming fact that both are now simultaneously below their long-term averages for the first time in the satellite era.</p>
+            </div>
+
+            <!-- The Message -->
+            <blockquote style="border-left: 4px solid var(--accent-blue); padding: 1.5rem 2rem; margin: 0 0 3rem; background: rgba(255,255,255,0.4); border-radius: 0 12px 12px 0; font-size: 1.2rem; font-weight: 600; color: var(--text-main); line-height: 1.6;">
+                The Arctic's decline is a slow erosion that's been building for decades. Antarctica's collapse came fast and without warning. Together, they show that polar ice loss is no longer a single-hemisphere problem — it's a global one.
+            </blockquote>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Detailed Project Overview -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">🎯 Detailed Project Overview</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                <div style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Goal</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Create a comparative polar sea ice monitoring dashboard that visualizes monthly extent anomalies for both the Arctic and Antarctic, revealing contrasting decline patterns and enabling side-by-side analysis of long-term climate trends at both poles.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Scope</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Analyze 45 years of satellite-derived monthly sea ice extent data (1979–2024) from the NSIDC Sea Ice Index, calculating anomalies against the standard 1981–2010 climatological baseline for both hemispheres.</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Key Visualization Aspects</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                <li><strong>Stacked Dual-Panel Layout:</strong> Vertically aligned scatter plots with a shared x-axis (Year) and matching y-axis scale (Anomaly in M km²), enabling direct visual comparison between Antarctic (top) and Arctic (bottom) trends</li>
+                <li><strong>Diverging Color Encoding:</strong> Blue-to-red color scale mapped to anomaly values, providing an immediate visual signal of whether each month is above or below the long-term baseline</li>
+                <li><strong>Contextual Annotations:</strong> Region-specific narrative text placed within each panel explaining the key findings, trend onset dates, and record values — making the dashboard self-contained and readable</li>
+                <li><strong>Highlighted Regime Shift:</strong> An annotation box on the Antarctic panel draws attention to the post-2016 collapse, the most significant and unexpected finding in the data</li>
+            </ul>
+
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Value & Impact</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 3rem;">
+                <div style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Climate Communication</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Accessible, visually intuitive tool for communicating complex polar ice trends to non-technical audiences</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Research Context</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Side-by-side comparison revealing the fundamentally different decline mechanisms at each pole</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Policy Support</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Documents the unprecedented simultaneous decline at both poles, supporting evidence-based climate policy</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Educational Resource</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Self-contained dashboard with embedded methodology and citations suitable for classroom engagement</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Challenges & Solutions -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">🎯 Challenges & Solutions</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Comparing Two Regions with Different Ice Behaviors</h3>
+                    <p>Arctic and Antarctic sea ice follow opposite seasonal cycles and have fundamentally different baseline magnitudes. Showing raw extent values side by side would obscure the trend signal behind seasonal noise and scale differences.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Calculated monthly anomalies against each region's own 1981–2010 baseline, normalizing both datasets to a common "departure from normal" metric. This strips out the seasonal cycle and scale differences, making the two poles directly comparable on a shared y-axis.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Conveying Both Gradual and Sudden Change</h3>
+                    <p>The Arctic story is a slow decline over 25+ years. The Antarctic story is a sudden collapse in under a decade. A single visualization approach risks emphasizing one narrative at the expense of the other.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Used a stacked vertical layout with identical axis scales so the viewer's eye naturally moves between panels and registers the contrast. Targeted annotations within each panel explain the specific pattern without requiring the viewer to interpret the data unaided.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Making 1,100+ Data Points Readable</h3>
+                    <p>With 552 monthly anomalies per pole, visual clutter was a real risk. Traditional line charts at this density become noisy and hard to parse.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Used a dot plot (scatter) approach rather than connected lines, allowing each month to stand as an individual data point. The diverging color scale does the heavy lifting — the viewer doesn't need to trace a line, they just see the field of color shift from blue to red over time.</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Data Sources & Metrics -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">📊 Data Sources & Metrics</h2>
+
+            <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border); margin-bottom: 2rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Sea Ice Extent Data</h3>
+                <p><strong>Source:</strong> NSIDC Sea Ice Index, Version 3 — Fetterer, F., K. Knowles, W. N. Meier, M. Savoie, and A. K. Windnagel (2017, updated daily)</p>
+                <h3 style="color: var(--text-main); margin-top: 1.5rem; margin-bottom: 0.5rem;">Anomaly Calculation</h3>
                 <ul style="margin-left: 1.5rem;">
-                    <li>Calculated fields using dual-axis overlay maps.</li>
-                    <li>Dynamic filtering for time-series continuous playback.</li>
-                    <li>Color palettes rigorously constrained to the Viridis heatmap gradient matrix for maximal visual accessibility.</li>
+                    <li><strong>Baseline Period:</strong> 1981–2010 (standard NSIDC climatological reference, 30-year average)</li>
+                    <li><strong>Method:</strong> For each of the 12 calendar months, computed the mean extent across the 30 baseline years. Each individual monthly observation was then expressed as a departure from its corresponding monthly baseline value.</li>
+                    <li><strong>Result:</strong> Positive anomalies (blue) indicate more ice than the 1981–2010 average; negative anomalies (red) indicate less ice</li>
                 </ul>
             </div>
 
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="#" class="btn" style="padding: 1.5rem 3rem; font-size: 1.25rem;">View Interactive Tableau Dashboard</a>
+            <!-- Key Metrics Table -->
+            <div style="overflow-x: auto; margin-bottom: 3rem;">
+                <table style="width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.5); border-radius: 14px; overflow: hidden; border: 1px solid var(--glass-border);">
+                    <thead>
+                        <tr style="background: rgba(0,180,216,0.1);">
+                            <th style="padding: 1rem 1.5rem; text-align: left; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--glass-border);">Metric</th>
+                            <th style="padding: 1rem 1.5rem; text-align: left; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--glass-border);">Arctic</th>
+                            <th style="padding: 1rem 1.5rem; text-align: left; font-weight: 800; color: var(--text-main); border-bottom: 2px solid var(--glass-border);">Antarctic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border); font-weight: 600;">2024 Annual Anomaly</td>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border); color: var(--accent-red); font-weight: 600;">−1.42 M km²</td>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border); color: var(--accent-red); font-weight: 600;">−0.82 M km²</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border); font-weight: 600;">Worst Single Month</td>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border);">Sep 2012 (−2.88)</td>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border);">Sep 2023 (−1.66)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border); font-weight: 600;">Trend Onset</td>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border);">~2000</td>
+                            <td style="padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--glass-border);">~2016</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.85rem 1.5rem; font-weight: 600;">Record Low Extent</td>
+                            <td style="padding: 0.85rem 1.5rem;">Sep 2012 (3.63 M km²)</td>
+                            <td style="padding: 0.85rem 1.5rem;">Sep 2023 (16.96 M km²)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Technical Achievement -->
+            <div style="background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(255,140,105,0.08)); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 3rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem;">Technical Achievement</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li><strong>Anomaly Calculation Pipeline:</strong> Computed 1981–2010 monthly baselines (12 values per pole) from raw extent data, then derived 552 monthly anomalies per hemisphere</li>
+                    <li><strong>Tableau Visualization Design:</strong> Dual-panel scatter plot with synchronized axes, diverging color palette, and embedded annotations achieving a high information-to-ink ratio</li>
+                    <li><strong>Data Storytelling:</strong> Strategic use of color, layout, and annotation to guide the viewer through two distinct climate narratives within a single cohesive dashboard</li>
+                </ul>
+            </div>
+
+            <!-- Final Statement -->
+            <p style="font-weight: 600; font-size: 1.1rem; color: var(--text-main); text-align: center; padding: 2rem 0;">This project demonstrates the ability to transform complex, multi-decadal satellite datasets into a clear comparative narrative, using anomaly analysis, strategic color encoding, and editorial annotation to communicate two distinct but interconnected polar climate stories within a single dashboard.</p>
+
+            <!-- View Dashboard CTA -->
+            <div style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">
+                <a href="https://public.tableau.com/app/profile/mark.rubin7829/viz/ArcticAntarcticSeaIceExtent/Dashboard1?publish=yes" target="_blank" class="btn" style="padding: 1.25rem 3rem; font-size: 1.15rem; color: #000;">View Interactive Tableau Dashboard &rarr;</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Climate Data Visualizations. All rights reserved.</p>
+        <p>&copy; 2026 The Lasting Wake. All rights reserved.</p>
     </footer>
 
     <script src="../script.js"></script>
