@@ -5,36 +5,63 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 1,
             title: "Global Temperature Anomalies",
             category: "Heat Index",
-            image: "https://picsum.photos/seed/climate1/800/600",
-            tableauLink: "#"
+            image: "https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?q=80&w=1200&auto=format&fit=crop",
+            description: "<p>An interactive dashboard revealing surface temperature spikes across the globe over the last 50 years.</p><p>This visualization showcases the alarming rate of warming in polar regions compared to equatorial zones.</p>",
+            software: [
+                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
+                { name: "SQL", src: "https://img.icons8.com/?size=96&id=J6KcaRLsTgpZ&format=png" }
+            ],
+            skills: ["Data Analysis", "Climate Science", "Web Scraping"]
         },
         {
             id: 2,
             title: "Sea Level Rise Projections",
             category: "Oceanography",
-            image: "https://picsum.photos/seed/climate2/800/600",
-            tableauLink: "#"
+            image: "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=1200&auto=format&fit=crop",
+            description: "<p>A comprehensive mapping of coastal vulnerabilities.</p><p>This Tableau visualization explores different emission scenarios and their consequent impact on sea levels by the year 2100.</p>",
+            software: [
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
+                { name: "Excel", src: "https://img.icons8.com/?size=96&id=y5utoW4FUM92&format=png" },
+                { name: "Datawrapper", src: "https://www.google.com/s2/favicons?domain=datawrapper.de&sz=64" }
+            ],
+            skills: ["Data Visualization", "Data Cleaning"]
         },
         {
             id: 3,
             title: "Deforestation Impact",
             category: "Land Use",
-            image: "https://picsum.photos/seed/climate3/800/600",
-            tableauLink: "#"
+            image: "https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1200&auto=format&fit=crop",
+            description: "<p>Tracking carbon sink depletion in the Amazon and Congo basins.</p><p>This visualization highlights the correlation between forest loss and localized temperature spikes.</p>",
+            software: [
+                { name: "Flourish", src: "https://www.google.com/s2/favicons?domain=flourish.studio&sz=64" },
+                { name: "QGIS", src: "https://cdn.simpleicons.org/qgis/589632" }
+            ],
+            skills: ["Community Engagement", "Data Analytics"]
         },
         {
             id: 4,
             title: "Renewable Energy Adoption",
             category: "Solutions",
-            image: "https://picsum.photos/seed/climate4/800/600",
-            tableauLink: "#"
+            image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1200&auto=format&fit=crop",
+            description: "<p>A positive outlook mapping the exponential growth of solar and wind energy production globally.</p><p>Analyzing the shift towards sustainable power grids.</p>",
+            software: [
+                { name: "D3.js", src: "https://img.icons8.com/?size=96&id=aRMIsPaPXPEh&format=png" },
+                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" }
+            ],
+            skills: ["Project Management", "Business Analytics", "Data Visualization"]
         },
         {
             id: 5,
             title: "Extreme Weather Events",
             category: "Climate Impact",
-            image: "https://picsum.photos/seed/climate5/800/600",
-            tableauLink: "#"
+            image: "https://images.unsplash.com/photo-1561484930-998b6a7b22e8?q=80&w=1200&auto=format&fit=crop",
+            description: "<p>Visualizing the frequency and intensity of hurricanes, droughts, and wildfires.</p><p>A stark look at the human and economic cost of climate instability over recent decades.</p>",
+            software: [
+                { name: "Canva", src: "https://img.icons8.com/fluency/96/canva.png" },
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
+            ],
+            skills: ["Illustrative Design", "Community Engagement"]
         }
     ];
 
@@ -43,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalImage = document.getElementById('modal-image');
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
-    const modalLink = document.getElementById('modal-link');
+    const deeperDiveLink = document.getElementById('deeper-dive-link');
+    const modalSkills = document.getElementById('modal-skills');
     const closeModalBtn = document.getElementById('close-modal');
 
     // Generate Gallery Items with Scattering effect
@@ -83,27 +111,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    async function openModal(project) {
+    function openModal(project) {
         if (!modal) return;
         modalImage.src = project.image;
         modalTitle.textContent = project.title;
-        modalLink.href = project.tableauLink;
+        if (deeperDiveLink) deeperDiveLink.href = `content/project-${project.id}.html`;
         
-        modalDescription.innerHTML = '<p style="opacity: 0.5;">Loading description...</p>';
+        modalDescription.innerHTML = project.description || '<p>No detailed description available.</p>';
         
-        modal.classList.add('active');
+        // Dynamically populate modal-skills
+        if (modalSkills && project.software && project.skills) {
+            let skillsHTML = '';
+            
+            project.software.forEach(sw => {
+                skillsHTML += `
+                <div class="modal-software-icon">
+                    <div class="icon-face">
+                        <img src="${sw.src}" alt="${sw.name}">
+                    </div>
+                    <div class="icon-title">${sw.name}</div>
+                </div>`;
+            });
 
-        try {
-            const response = await fetch(`content/project-${project.id}.html`);
-            if (response.ok) {
-                const htmlText = await response.text();
-                modalDescription.innerHTML = htmlText;
-            } else {
-                modalDescription.innerHTML = '<p>No detailed description available.</p>';
-            }
-        } catch (error) {
-            modalDescription.innerHTML = '<p>Error loading description.</p>';
+            project.skills.forEach(skill => {
+                skillsHTML += `<span class="modal-skill-tag">${skill}</span>`;
+            });
+
+            modalSkills.innerHTML = skillsHTML;
         }
+
+        modal.classList.add('active');
     }
 
     function closeModal() {

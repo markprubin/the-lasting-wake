@@ -65,16 +65,22 @@
                 <div class="modal-scrollable-content">
                     <h2 id="modal-title">Project Title</h2>
                     <div id="modal-description">Detailed overview goes here...</div>
+                    <div id="modal-skills" class="modal-skills-section">
+                        <!-- Dynamically populated skills go here -->
+                    </div>
                 </div>
                 <div class="modal-stationary-sidebar">
                     <div class="modal-image-container">
                         <img id="modal-image" src="" alt="Project Visual">
                     </div>
-                    <a id="modal-link" href="#" target="_blank" class="btn">View on Tableau</a>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <a id="deeper-dive-link" href="#" class="btn btn-secondary">Deeper Dive</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <footer>
         <p>&copy; 2026 Climate Data Visualizations. All rights reserved.</p>
