@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Polar Sea Ice in Decline",
             category: "Climate Analysis",
             image: "content/images/project-1-dashboard.png",
-            description: "<p>A stacked dual-panel dot plot comparing monthly sea ice extent anomalies at both poles from 1979 to 2024, revealing contrasting decline patterns — the Arctic's steady erosion versus Antarctica's sudden post-2016 collapse.</p>",
+            description: "<p>The polar ice caps are often talked about together, but their stories are strikingly different — and this visualization makes that clear at a glance.</p><p>Two side-by-side panels track every month of sea ice data from 1979 to 2024, with each dot colored on a spectrum from deep blue (more ice than average) to deep red (far less). The Arctic panel tells a story of relentless, unbroken decline — barely a blue dot to be found after the mid-2000s. The Antarctic panel looks almost normal for decades, then something breaks around 2016: a sudden, dramatic collapse that scientists are still working to fully explain.</p><p>By placing both hemispheres on the same scale and color scheme, the dashboard lets you compare not just the trends, but the pace and character of change at each pole — and the uncomfortable takeaway is that neither is recovering.</p>",
             software: [
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
                 { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Valley of the Heat",
             category: "Urban Climate",
             image: "content/images/project-2-dashboard.png",
-            description: "<p>A striking circular visualization that tells Phoenix's warming story at a glance. Each ray represents one year from 1950 to 2025 — blue for cooler, red for hotter. The pattern is unmistakable.</p>",
+            description: "<p>Phoenix has always been hot — but there's a difference between desert heat and something more permanent. This visualization was built to show that difference in a way that's impossible to dismiss.</p><p>Arranged in a circle like the face of a clock, each ray represents a single year from 1950 to 2025. Years that ran cooler than the historical average glow blue; years that ran hotter burn red. Spin through the outer edge of the circle and you're looking at the last decade — and it's almost entirely red. The cool blues that dominate the 1950s through 1980s give way to an overwhelming shift that begins in the 1990s and never reverses.</p><p>The circular format isn't just aesthetic — it mirrors the shape of the sun itself, grounding the data in something visceral. You don't need to read a single number to understand what Phoenix's climate has become.</p>",
             software: [
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
                 { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" }
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "AZ County Temp Anomalies",
             category: "Statewide Climate",
             image: "content/images/project-3-dashboard.png",
-            description: "<p>An interactive visualization showing temperature patterns for all 15 Arizona counties from 1950 to 2025, directly countering the misconception that warming is limited to urban areas.</p>",
+            description: "<p>A common pushback on Phoenix's rising temperatures goes like this: it's not climate change, it's just all the concrete and development — the urban heat island effect. This project was built to answer that argument directly.</p><p>By mapping temperature anomalies across all 15 Arizona counties — from dense Maricopa to rural Greenlee and Navajo — the data tells a clear and consistent story: every county is warming, including those with almost no urban development at all. The same blue-to-red shift that defines Phoenix appears in the remote, sparsely populated counties of the state's interior and high desert.</p><p>The result is a statewide picture that removes the escape hatch. Whether you're looking at a city of five million or a county with fewer than 10,000 residents, the trend is the same — and that uniformity is exactly the point.</p>",
             software: [
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
             ],
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Antarctica Icebergs",
             category: "Iceberg Tracking",
             image: "content/images/project-4-dashboard.png",
-            description: "<p>An automated data pipeline that scraped 547 government CSV files to track and visualize the journeys of massive Antarctic icebergs across the Southern Ocean from 2014 to 2025.</p>",
+            description: "<p>Some of the largest moving objects on Earth are icebergs — some bigger than entire cities — and yet their journeys across the Southern Ocean go largely unnoticed. This project set out to change that.</p><p>The US National Ice Center has been quietly tracking these giants for decades, logging their positions, sizes, and movements in hundreds of individual data files scattered across a government website. By building an automated system to collect and unify all 547 of those files, every tracked iceberg from 2014 to 2025 could finally be seen in one place.</p><p>The result is an interactive map where each colored line traces a single iceberg's path — drifting, spinning, breaking apart, and eventually disappearing into warmer waters. Some loop around the continent for years, caught in circular currents. Others shoot northward and vanish within months. It's part data project, part portrait of an environment in motion.</p>",
             software: [
                 { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Yakima County's Water Crisis",
             category: "Water Crisis",
             image: "content/images/project-5-pdsi.png",
-            description: "<p>Three complementary visualizations telling the story of the Yakima Basin's worst water shortage in decades — published by the Center for Environmental Law & Policy.</p><p>A reservoir map showing five major reservoirs at critically low levels, 130 years of Cle Elum storage data revealing a pattern of consistent under-filling, and a Palmer Drought Severity Index chart showing the region's sharp shift toward extreme drought after 2013.</p>",
+            description: "<p>The Yakima Basin in central Washington feeds some of the most productive farmland in the country — apples, hops, wine grapes — and it runs almost entirely on snowmelt stored in five mountain reservoirs. In recent years, those reservoirs have been failing to refill. This project tells that story through three visualizations, and was published by the Center for Environmental Law & Policy.</p><p>A geographic map shows all five reservoirs at once, represented as glass containers — and most of them are nearly empty, the largest sitting at just 16% capacity. A 130-year chart of Cle Elum Reservoir reveals what normal used to look like: reliable seasonal swings, tanks that reliably topped off each spring. The recent years sit far below those historical lines. And a color-coded drought index stretching back to 1893 shows the unmistakable shift: after 2013, the region entered a period of extended, worsening drought that shows no sign of reverting.</p><p>Taken together, the three charts make a case that's hard to argue with — this isn't a bad year, or even a bad decade. It's a new baseline.</p>",
             software: [
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
                 { name: "Mapbox", src: "https://cdn.simpleicons.org/mapbox/4264FB" }
