@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extreme Weather Events | The Lasting Wake</title>
+    <title>Yakima Basin Water Crisis | The Lasting Wake</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -23,7 +24,13 @@
 
     <!-- Hidden Menu Drawer -->
     <nav class="about-drawer" id="about-drawer">
-        <a href="../index.html" class="drawer-home-icon" aria-label="Home"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
+        <a href="../index.html" class="drawer-home-icon" aria-label="Home">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+        </a>
         <button class="close-drawer" id="close-drawer" aria-label="Close Menu">&times;</button>
         <div class="drawer-content">
             <ul class="drawer-nav">
@@ -39,48 +46,378 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
-    <main class="page-content">
+    <main class="page-content" style="max-width: 1000px;">
         <a href="../index.html#portfolio" class="back-link">&larr; Back to Portfolio</a>
-        
-        <h1 class="page-title" style="font-size: 3.5rem;">Extreme Weather Events</h1>
-        <div class="project-meta">
-            <span class="category-tag">Heat Index</span>
+
+        <h1 class="page-title" style="font-size: 3rem; line-height: 1.15;">A Warning from the Yakima: Washington's
+            Water Future in a Warming Climate</h1>
+        <p class="page-subtitle" style="font-size: 1.4rem;">Visualizing severe drought across Washington's agricultural
+            heartland</p>
+
+        <!-- Published Article Callout -->
+        <div
+            style="background: linear-gradient(135deg, rgba(0,180,216,0.12), rgba(255,140,105,0.08)); padding: 1.5rem 2rem; border-radius: 14px; border: 1px solid var(--glass-border); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+            <div>
+                <p style="font-size: 0.85rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem;">Published Article</p>
+                <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.25rem;">Center for Environmental Law &amp; Policy</p>
+                <a href="https://celp.org/2025/12/09/a-warning-from-the-yakima-washingtons-water-future-in-a-warming-climate/"
+                    target="_blank"
+                    style="color: var(--accent-blue); text-decoration: none; font-size: 0.95rem; font-weight: 600;">Read
+                    the published article &rarr;</a>
+            </div>
         </div>
 
-        <img src="https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?q=80&w=1200&auto=format&fit=crop" class="hero-image" alt="Project Overview">
+        <!-- Image Tab Switcher -->
+        <div style="margin-bottom: 3rem;">
+            <div id="img-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                <button onclick="showTab(0)" class="img-tab" style="padding: 0.5rem 1.1rem; border-radius: 20px; border: 1px solid var(--glass-border); background: var(--accent-blue); color: #fff; font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Drought Severity Index</button>
+                <button onclick="showTab(1)" class="img-tab" style="padding: 0.5rem 1.1rem; border-radius: 20px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.6); color: var(--text-main); font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Reservoir Map</button>
+                <button onclick="showTab(2)" class="img-tab" style="padding: 0.5rem 1.1rem; border-radius: 20px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.6); color: var(--text-main); font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Cle Elum Storage</button>
+            </div>
+            <div id="img-panel-0" class="img-panel">
+                <img src="images/project-5-pdsi.png" alt="Yakima Palmer Drought Severity Index" style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); display: block;">
+            </div>
+            <div id="img-panel-1" class="img-panel" style="display:none;">
+                <img src="images/project-5-reservoir-map.png" alt="Yakima Reservoir Map" style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); display: block;">
+            </div>
+            <div id="img-panel-2" class="img-panel" style="display:none;">
+                <img src="images/project-5-storage.png" alt="Cle Elum Reservoir Storage" style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); display: block;">
+            </div>
+        </div>
+        <script>
+            (function () {
+                window.showTab = function (i) {
+                    document.querySelectorAll('.img-panel').forEach(function (p, j) {
+                        p.style.display = j === i ? 'block' : 'none';
+                    });
+                    document.querySelectorAll('.img-tab').forEach(function (b, j) {
+                        b.style.background = j === i ? 'var(--accent-blue)' : 'rgba(255,255,255,0.6)';
+                        b.style.color = j === i ? '#fff' : 'var(--text-main)';
+                    });
+                };
+            })();
+        </script>
 
         <div class="text-block">
-            <p>This project explores a century of global temperature anomalies using robust spatial mapping to uncover the rapidly increasing thresholds of planetary warming.</p>
-            
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-main);">Technical Documentation</h2>
-            <div style="background: rgba(255,255,255,0.6); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                <h3>Data Sources</h3>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                    <li>NOAA Global Surface Temperature Anomalies (1880-2024).</li>
-                    <li>NASA Earth Observatory Dataset parsing.</li>
-                </ul>
 
-                <h3>Methodology</h3>
-                <p>The dataset was meticulously cleansed utilizing a robust Python backend pipeline comprising of Pandas and NumPy for dropping standard deviations below the critical noise floor threshold bounds.</p>
-
-                <h3>Tableau Operations</h3>
-                <ul style="margin-left: 1.5rem;">
-                    <li>Calculated fields using dual-axis overlay maps.</li>
-                    <li>Dynamic filtering for time-series continuous playback.</li>
-                    <li>Color palettes rigorously constrained to the Viridis heatmap gradient matrix for maximal visual accessibility.</li>
-                </ul>
+            <!-- The Situation -->
+            <div
+                style="background: rgba(255,255,255,0.6); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 3rem;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main);">The Situation</h2>
+                <p>The Yakima Basin in central Washington is experiencing its worst water shortage in decades. But how do
+                    you make people understand just how dire it is? Numbers in a spreadsheet don't capture the
+                    urgency.</p>
             </div>
 
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="#" class="btn" style="padding: 1.5rem 3rem; font-size: 1.25rem;">View Interactive Tableau Dashboard</a>
+            <!-- What I Created -->
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-main);">What I Created</h2>
+            <p style="margin-bottom: 2rem;">Three complementary visualizations that tell the complete story:</p>
+
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.1rem;">1 &middot; The
+                        Reservoir Map</h3>
+                    <p>A geographic snapshot showing all five major reservoirs at critically low levels. The largest,
+                        Kachess Reservoir, sits at just 16% capacity. The others? Between 4–19%. The visual is stark:
+                        these reservoirs, represented by glass icons on the map, are nearly empty.</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.1rem;">2 &middot; 130
+                        Years of Storage Data</h3>
+                    <p>A time-series chart of Cle Elum Reservoir showing seasonal patterns from the 1890s to today. The
+                        recent years stand out dramatically — water levels that once reliably climbed above historical
+                        averages now barely reach half capacity. Three major droughts in the 2010s and 2020s are clearly
+                        marked, with the current situation being the worst yet.</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.1rem;">3 &middot; The
+                        Palmer Drought Severity Index</h3>
+                    <p>A color-coded timeline showing wet periods (green) versus drought periods (red/pink) since 1998.
+                        The pattern shift is unmistakable: after 2013, the region entered extended drought with
+                        increasingly severe episodes. The 2020s show extreme drought conditions dominating the
+                        landscape.</p>
+                </div>
+            </div>
+
+            <!-- Why It Matters / The Message -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 0 0 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">Why It Matters
+                    </h3>
+                    <p>The Yakima Basin supplies water to one of the nation's most productive agricultural regions.
+                        These visualizations provide water managers, farmers, policymakers, and journalists with clear
+                        evidence that this isn't a temporary dry spell — it's a fundamental shift in water availability
+                        that demands immediate action.</p>
+                </div>
+                <div
+                    style="background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(255,140,105,0.08)); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">The Message</h3>
+                    <p>The reservoirs aren't just low this year. They're consistently failing to refill to historical
+                        levels, decade after decade. That's not weather variability — that's climate change.</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Detailed Project Overview -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Detailed Project Overview</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Goal</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Create a comprehensive water resource monitoring
+                        system for the Yakima River Basin that visualizes current reservoir conditions, historical
+                        storage patterns, and drought severity to inform stakeholders about the region's water
+                        crisis.</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Scope</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Analyze water storage data across five Yakima Basin
+                        reservoirs (2012–2025) and Palmer Drought Severity Index data from 1893 to present, creating an
+                        integrated visualization system combining geographic context, temporal analysis, and drought
+                        metrics.</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Key Visualization Aspects</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                <li><strong>Geographic Context Map:</strong> Interactive Mapbox visualization showing reservoir
+                    locations along the Yakima River system with real-time capacity percentages displayed through
+                    intuitive container icons</li>
+                <li style="margin-top: 0.5rem;"><strong>Time-Series Reservoir Analysis:</strong> Area chart tracking
+                    Cle Elum Reservoir storage from 2012–2025, highlighting critical drought years (2015, 2019, 2021)
+                    and comparing current levels against 50-year historical averages</li>
+                <li style="margin-top: 0.5rem;"><strong>Drought Severity Tracking:</strong> Palmer Drought Severity
+                    Index visualization spanning 130+ years (1893–present), revealing increasing climate volatility and
+                    recent extreme drought conditions in Yakima County</li>
+            </ul>
+
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Methodology</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Agricultural Planning</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Enables farmers and irrigation
+                        districts to make informed decisions about crop planning and water allocation</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Policy Development</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Provides evidence for water
+                        resource management policies and drought response planning</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Mapbox Integration</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Custom geographic
+                        visualization with styled basemaps, river systems, and interactive reservoir indicators</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Climate Data Processing</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Integration of PDSI data
+                        spanning over a century, with color-coded severity classifications and seasonal smoothing</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Challenges & Solutions -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Challenges & Solutions</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Visualizing Cyclical Reservoir
+                        Patterns</h3>
+                    <p>Reservoir storage follows distinct seasonal cycles — filling during spring snowmelt and depleting
+                        through summer irrigation season. The challenge was displaying these natural fluctuations while
+                        highlighting abnormal drought conditions.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Implemented
+                        reference lines showing both "Overall Average (1961–2010)" and "Annual Low Point Average
+                        (1961–2010)" to provide context for normal seasonal variation versus drought-induced depletion.
+                        This allows viewers to distinguish between expected seasonal lows and crisis-level storage.</p>
+                </div>
+
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Communicating Current Crisis
+                        Severity</h3>
+                    <p>With five reservoirs at different capacity levels, conveying the system-wide water shortage
+                        required a clear, immediate visual language.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Designed
+                        custom container icons sized proportionally to capacity, with bright cyan coloring for immediate
+                        visual recognition against the dark basemap. Positioning reservoirs geographically while
+                        displaying percentage values creates both spatial and quantitative understanding.</p>
+                </div>
+
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Connecting Short-Term Trends to
+                        Long-Term Climate Patterns</h3>
+                    <p>Reservoir data alone might suggest temporary drought conditions, but understanding the broader
+                        climate context requires historical perspective.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Integrated
+                        the Palmer Drought Severity Index spanning the last 30 years, revealing that recent extreme
+                        drought events (2020s) fit within a pattern of increasing climate volatility and prolonged dry
+                        periods since 2013 — demonstrating this is not merely a short-term weather fluctuation but part
+                        of long-term climate change impacts.</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- The Approach and Process -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">The Approach & Process</h2>
+
+            <!-- Data Sources -->
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Data Sources & Metrics</h3>
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h4 style="color: var(--text-main); margin-bottom: 0.75rem;">Reservoir Storage Data</h4>
+                    <ul style="margin-left: 1.25rem; margin-bottom: 0;">
+                        <li><strong>Source:</strong> U.S. Bureau of Reclamation (USBR)</li>
+                        <li style="margin-top: 0.4rem;"><strong>Coverage:</strong> Five major Yakima Basin reservoirs
+                            (Keechelus, Kachess, Cle Elum, Bumping Lake, Rimrock)</li>
+                        <li style="margin-top: 0.4rem;"><strong>Temporal Range:</strong> 2012–2025 for detailed analysis
+                            (Cle Elum Visual)</li>
+                        <li style="margin-top: 0.4rem;"><strong>Baseline Period:</strong> 1961–2010 for historical
+                            comparison</li>
+                        <li style="margin-top: 0.4rem;"><strong>Measurement:</strong> Acre-feet storage capacity</li>
+                    </ul>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h4 style="color: var(--text-main); margin-bottom: 0.75rem;">Palmer Drought Severity Index (PDSI)
+                    </h4>
+                    <ul style="margin-left: 1.25rem; margin-bottom: 0;">
+                        <li>Standardized drought metric ranging from &minus;6 (extreme drought) to +6 (extremely wet)
+                        </li>
+                        <li style="margin-top: 0.4rem;">Incorporates temperature, precipitation, and soil moisture data
+                        </li>
+                        <li style="margin-top: 0.4rem;"><strong>Historical coverage:</strong> 1893–present for Yakima
+                            County, highlighting the last 30 years</li>
+                        <li style="margin-top: 0.4rem;">Provides long-term climate context beyond reservoir
+                            measurements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Visualization Design -->
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Visualization Design</h3>
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">Geographic Visualization (Mapbox)
+                    </h4>
+                    <ul style="margin-left: 1.25rem; margin-bottom: 0;">
+                        <li>Dark theme to emphasize water features and data elements</li>
+                        <li style="margin-top: 0.4rem;">Custom styled river systems (Yakima, Naches, Tieton) in cyan
+                        </li>
+                        <li style="margin-top: 0.4rem;">Custom SVG container shapes representing fill levels with
+                            real-time capacity percentages (4%, 10%, 16%, 19%)</li>
+                        <li style="margin-top: 0.4rem;">Strategic label placement for readability with geographic
+                            reference cities</li>
+                    </ul>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">Time-Series Analysis (Tableau)</h4>
+                    <ul style="margin-left: 1.25rem; margin-bottom: 0;">
+                        <li>Area chart design emphasizing seasonal storage patterns</li>
+                        <li style="margin-top: 0.4rem;">Dual reference lines for overall average and annual low points
+                        </li>
+                        <li style="margin-top: 0.4rem;">Annotated drought years (2015, 2019, 2021) with contextual
+                            callouts</li>
+                        <li style="margin-top: 0.4rem;">Gradient color scheme showing depth of storage depletion</li>
+                    </ul>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.75rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">Climate Context (PDSI Visualization)
+                    </h4>
+                    <ul style="margin-left: 1.25rem; margin-bottom: 0;">
+                        <li>Three-color classification system: green (wet), yellow (moderate), red (extreme/severe
+                            drought)</li>
+                        <li style="margin-top: 0.4rem;">Zero-line reference for normal conditions</li>
+                        <li style="margin-top: 0.4rem;">Extended time series revealing century-long patterns</li>
+                        <li style="margin-top: 0.4rem;">Recent trend highlighting (2013–present) showing persistent
+                            drought conditions</li>
+                        <li style="margin-top: 0.4rem;">Seasonal smoothing with color thresholds aligned to standard
+                            PDSI classifications</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Final Statement -->
+            <p
+                style="font-weight: 600; font-size: 1.1rem; color: var(--text-main); text-align: center; padding: 2rem 0;">
+                This multi-layered approach combines current snapshot data (reservoir map), medium-term trends
+                (2012–2025 storage), and long-term climate patterns (30 years of PDSI) to create a comprehensive
+                picture of the Yakima Basin's water crisis.</p>
+
+            <!-- Data Sources -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Data Sources</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">U.S. Bureau of Reclamation</h3>
+                    <p><strong>Source:</strong> <a href="https://www.usbr.gov/pn/hydromet/yakima/yaktea.html"
+                            target="_blank"
+                            style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">USBR Pacific
+                            Northwest Hydromet</a></p>
+                    <p style="margin-top: 0.75rem;"><strong>Dataset:</strong> Yakima Basin Reservoir Storage Records
+                    </p>
+                    <p style="margin-top: 0.75rem;"><strong>Coverage:</strong> Five major reservoirs, 2012–2025</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">USDA Natural Resources Conservation
+                        Service</h3>
+                    <p><strong>Source:</strong> <a
+                            href="https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-climate-monitoring-predefined-reports-and-maps"
+                            target="_blank"
+                            style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">NRCS Snow &amp;
+                            Climate Monitoring</a></p>
+                    <p style="margin-top: 0.75rem;"><strong>Dataset:</strong> Palmer Drought Severity Index, Yakima
+                        County</p>
+                    <p style="margin-top: 0.75rem;"><strong>Coverage:</strong> 1893–present</p>
+                </div>
+            </div>
+
+            <!-- View Dashboards CTAs -->
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; margin-bottom: 2rem; align-items: center;">
+                <a href="https://public.tableau.com/app/profile/mark.rubin7829/viz/CleElum/CleElumReservoirStorage"
+                    target="_blank" class="btn"
+                    style="padding: 1.1rem 2.5rem; font-size: 1.05rem; color: #000; width: fit-content;">Cle Elum
+                    Reservoir Storage Dashboard &rarr;</a>
+                <a href="https://public.tableau.com/app/profile/mark.rubin7829/viz/YakimaPDSI/YakimaPDSI"
+                    target="_blank" class="btn"
+                    style="padding: 1.1rem 2.5rem; font-size: 1.05rem; color: #000; width: fit-content;">Yakima Drought
+                    Severity Index Dashboard &rarr;</a>
+                <a href="https://public.tableau.com/app/profile/mark.rubin7829/viz/YakimaReservoirsMap/ReservoirFinal"
+                    target="_blank" class="btn"
+                    style="padding: 1.1rem 2.5rem; font-size: 1.05rem; color: #000; width: fit-content;">Yakima
+                    Reservoirs Map Dashboard &rarr;</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Climate Data Visualizations. All rights reserved.</p>
+        <p>&copy; 2026 The Lasting Wake. All rights reserved.</p>
     </footer>
 
     <script src="../script.js"></script>
 </body>
+
 </html>

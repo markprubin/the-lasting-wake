@@ -16,50 +16,48 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 2,
-            title: "Sea Level Rise Projections",
-            category: "Oceanography",
-            image: "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=1200&auto=format&fit=crop",
-            description: "<p>A comprehensive mapping of coastal vulnerabilities.</p><p>This Tableau visualization explores different emission scenarios and their consequent impact on sea levels by the year 2100.</p>",
+            title: "Valley of the Heat",
+            category: "Urban Climate",
+            image: "content/images/project-2-dashboard.png",
+            description: "<p>A striking circular visualization that tells Phoenix's warming story at a glance. Each ray represents one year from 1950 to 2025 — blue for cooler, red for hotter. The pattern is unmistakable.</p>",
             software: [
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
-                { name: "Excel", src: "https://img.icons8.com/?size=96&id=y5utoW4FUM92&format=png" },
-                { name: "Datawrapper", src: "https://www.google.com/s2/favicons?domain=datawrapper.de&sz=64" }
+                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" }
             ],
-            skills: ["Data Visualization", "Data Cleaning"]
+            skills: ["Data Visualization", "Climate Science", "Data Cleaning"]
         },
         {
             id: 3,
-            title: "Deforestation Impact",
-            category: "Land Use",
-            image: "https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1200&auto=format&fit=crop",
-            description: "<p>Tracking carbon sink depletion in the Amazon and Congo basins.</p><p>This visualization highlights the correlation between forest loss and localized temperature spikes.</p>",
+            title: "AZ County Temp Anomalies",
+            category: "Statewide Climate",
+            image: "content/images/project-3-dashboard.png",
+            description: "<p>An interactive visualization showing temperature patterns for all 15 Arizona counties from 1950 to 2025, directly countering the misconception that warming is limited to urban areas.</p>",
             software: [
-                { name: "Flourish", src: "https://www.google.com/s2/favicons?domain=flourish.studio&sz=64" },
-                { name: "QGIS", src: "https://cdn.simpleicons.org/qgis/589632" }
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
             ],
-            skills: ["Community Engagement", "Data Analytics"]
+            skills: ["Data Visualization", "Climate Science", "Community Engagement"]
         },
         {
             id: 4,
-            title: "Renewable Energy Adoption",
-            category: "Solutions",
-            image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1200&auto=format&fit=crop",
-            description: "<p>A positive outlook mapping the exponential growth of solar and wind energy production globally.</p><p>Analyzing the shift towards sustainable power grids.</p>",
+            title: "Antarctica Icebergs",
+            category: "Iceberg Tracking",
+            image: "content/images/project-4-dashboard.png",
+            description: "<p>An automated data pipeline that scraped 547 government CSV files to track and visualize the journeys of massive Antarctic icebergs across the Southern Ocean from 2014 to 2025.</p>",
             software: [
-                { name: "D3.js", src: "https://img.icons8.com/?size=96&id=aRMIsPaPXPEh&format=png" },
-                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" }
+                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
             ],
-            skills: ["Project Management", "Business Analytics", "Data Visualization"]
+            skills: ["Web Scraping", "Data Engineering", "Geospatial Analysis"]
         },
         {
             id: 5,
-            title: "Extreme Weather Events",
-            category: "Climate Impact",
-            image: "https://images.unsplash.com/photo-1561484930-998b6a7b22e8?q=80&w=1200&auto=format&fit=crop",
-            description: "<p>Visualizing the frequency and intensity of hurricanes, droughts, and wildfires.</p><p>A stark look at the human and economic cost of climate instability over recent decades.</p>",
+            title: "Yakima County's Water Crisis",
+            category: "Water Crisis",
+            image: "content/images/project-5-pdsi.png",
+            description: "<p>Three complementary visualizations telling the story of the Yakima Basin's worst water shortage in decades — published by the Center for Environmental Law & Policy.</p><p>A reservoir map showing five major reservoirs at critically low levels, 130 years of Cle Elum storage data revealing a pattern of consistent under-filling, and a Palmer Drought Severity Index chart showing the region's sharp shift toward extreme drought after 2013.</p>",
             software: [
-                { name: "Canva", src: "https://img.icons8.com/fluency/96/canva.png" },
-                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
+                { name: "Mapbox", src: "https://cdn.simpleicons.org/mapbox/4264FB" }
             ],
             skills: ["Illustrative Design", "Community Engagement"]
         }

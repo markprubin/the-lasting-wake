@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renewable Energy Adoption | The Lasting Wake</title>
+    <title>Antarctica Icebergs | The Lasting Wake</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -23,7 +24,13 @@
 
     <!-- Hidden Menu Drawer -->
     <nav class="about-drawer" id="about-drawer">
-        <a href="../index.html" class="drawer-home-icon" aria-label="Home"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
+        <a href="../index.html" class="drawer-home-icon" aria-label="Home">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+        </a>
         <button class="close-drawer" id="close-drawer" aria-label="Close Menu">&times;</button>
         <div class="drawer-content">
             <ul class="drawer-nav">
@@ -39,48 +46,539 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
-    <main class="page-content">
+    <main class="page-content" style="max-width: 1000px;">
         <a href="../index.html#portfolio" class="back-link">&larr; Back to Portfolio</a>
-        
-        <h1 class="page-title" style="font-size: 3.5rem;">Renewable Energy Adoption</h1>
-        <div class="project-meta">
-            <span class="category-tag">Heat Index</span>
-        </div>
 
-        <img src="https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?q=80&w=1200&auto=format&fit=crop" class="hero-image" alt="Project Overview">
+        <h1 class="page-title" style="font-size: 3rem; line-height: 1.15;">Antarctic Icebergs: Tracking Giants on the
+            Move</h1>
+        <p class="page-subtitle" style="font-size: 1.4rem;">Mapping the journeys of massive icebergs across the
+            Southern Ocean</p>
+
+        <img src="images/project-4-dashboard.png" class="hero-image" alt="Antarctica Icebergs Dashboard">
 
         <div class="text-block">
-            <p>This project explores a century of global temperature anomalies using robust spatial mapping to uncover the rapidly increasing thresholds of planetary warming.</p>
-            
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-main);">Technical Documentation</h2>
-            <div style="background: rgba(255,255,255,0.6); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                <h3>Data Sources</h3>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                    <li>NOAA Global Surface Temperature Anomalies (1880-2024).</li>
-                    <li>NASA Earth Observatory Dataset parsing.</li>
-                </ul>
 
-                <h3>Methodology</h3>
-                <p>The dataset was meticulously cleansed utilizing a robust Python backend pipeline comprising of Pandas and NumPy for dropping standard deviations below the critical noise floor threshold bounds.</p>
-
-                <h3>Tableau Operations</h3>
-                <ul style="margin-left: 1.5rem;">
-                    <li>Calculated fields using dual-axis overlay maps.</li>
-                    <li>Dynamic filtering for time-series continuous playback.</li>
-                    <li>Color palettes rigorously constrained to the Viridis heatmap gradient matrix for maximal visual accessibility.</li>
-                </ul>
+            <!-- The Challenge -->
+            <div
+                style="background: rgba(255,255,255,0.6); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 3rem;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main);">The Challenge</h2>
+                <p>The US National Ice Center tracks enormous icebergs — some larger than cities — as they break off
+                    Antarctica and drift through the Southern Ocean. They've been recording data for years, but it's
+                    scattered across 547 individual files on their website.</p>
             </div>
 
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="#" class="btn" style="padding: 1.5rem 3rem; font-size: 1.25rem;">View Interactive Tableau Dashboard</a>
+            <!-- What I Built -->
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-main);">What I Built</h2>
+            <p>I created an automated system to gather, organize, and visualize every tracked iceberg's journey from
+                2014 to 2025. The result is an interactive map showing the paths of dozens of named icebergs as they
+                drift, spin, break apart, and eventually melt away.</p>
+
+            <!-- What It Shows / Why It Matters -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2.5rem 0 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">What It Shows</h3>
+                    <p>Each colored line traces a single iceberg's movement over time. You can see how some icebergs get
+                        caught in ocean currents and circle the continent for years, while others drift north and
+                        disappear. Some cluster together near the Antarctic Peninsula, while others venture far out into
+                        open waters. Click any iceberg name to highlight just its path.</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">Why It Matters
+                    </h3>
+                    <p>These icebergs aren't just scenic — they're massive floating hazards to shipping routes and
+                        scientific research vessels. They also tell us about ice shelf stability and ocean circulation
+                        patterns. By visualizing their movements, scientists, maritime operators, and researchers can
+                        better understand how these giants behave.</p>
+                </div>
+                <div
+                    style="background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(255,140,105,0.08)); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">The Technical
+                        Achievement</h3>
+                    <p>This project required building an entire data pipeline: automatically downloading 547 files from
+                        a government website, cleaning and standardizing inconsistent data formats, combining everything
+                        into one unified dataset, and creating geographic visualizations that make complex movement
+                        patterns instantly understandable.</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Detailed Project Overview -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Objectives</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Goal</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Automate the collection and standardization of
+                        Antarctic iceberg tracking data from the US Ice Center's online archive, preparing it for
+                        comprehensive geospatial visualization and analysis.</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Scope</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Scrape, download, validate, and consolidate 547
+                        individual CSV files spanning multiple years of iceberg position and size data into a single,
+                        Tableau-ready dataset for interactive dashboard development.</p>
+                </div>
+            </div>
+
+            <div
+                style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border); margin-bottom: 2rem;">
+                <strong style="color: var(--text-main);">Deliverable</strong>
+                <p style="margin-top: 0.5rem; margin-bottom: 0;">A unified, clean dataset with standardized schema
+                    optimized for Tableau visualization, enabling comprehensive Antarctic iceberg movement tracking,
+                    size analysis, and geographic pattern discovery through interactive dashboards.</p>
+            </div>
+
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Key Success Metrics</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                <li><strong>100%</strong> file download completion rate</li>
+                <li><strong>Zero</strong> data loss during consolidation</li>
+                <li>Standardized column structure across all historical data</li>
+                <li>Automated validation and quality assurance pipeline</li>
+                <li><strong>Tableau-optimized</strong> data structure with proper geographic coordinates and time series
+                    formatting</li>
+            </ul>
+
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Methodology</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Data Engineering</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Web scraping and automation,
+                        data collection and consolidation, quality assurance and validation, file management</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Technical Competencies</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Python automation with
+                        Selenium, web scraping with BeautifulSoup, Pandas data manipulation, error handling and logging
+                    </p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Data Visualization</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Interactive dashboard to
+                        isolate individual iceberg paths, color contrasting on a dark map for visual impact</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.4); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--accent-blue);">Business Value</strong>
+                    <p style="font-size: 0.95rem; margin-top: 0.4rem; margin-bottom: 0;">Automated government data
+                        collection, standardized oceanographic datasets, quality-controlled pipeline, reproducible
+                        workflows</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Challenges & Solutions -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Challenges & Solutions</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Challenge 1: Large-Scale File
+                        Management (547 CSV Files)</h3>
+                    <p>Managing and validating the download of 547 individual iceberg tracking CSV files from a
+                        government website, each containing different time periods and data structures.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Implemented
+                        automated validation system to cross-reference expected vs. actual downloads. Created file
+                        tracking with source lineage, built error handling for failed downloads, and developed systematic
+                        naming conventions.</p>
+                    <pre
+                        style="background: #1a1a2e; color: #e0e0e0; padding: 1rem; border-radius: 10px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin-top: 1rem;"><code>missing = df_expected[~df_expected["filename"].isin(downloaded_files)]
+if not missing.empty:
+    with open(output_txt, "w") as f:
+        for name in missing["filename"]:
+            f.write(name + "\n")</code></pre>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;"><strong>Outcome:</strong> Successfully validated
+                        100% file completion rate with automated reporting.</p>
+                </div>
+
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Challenge 2: Dynamic Web Scraping &
+                        Data Extraction</h3>
+                    <p>The US Ice Center website required form interactions and dynamic content loading, making simple
+                        HTTP requests insufficient.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Utilized
+                        Selenium WebDriver for browser automation, implemented wait conditions for dynamic content,
+                        built robust error handling for network timeouts, and created regex pattern matching for product
+                        IDs.</p>
+                    <pre
+                        style="background: #1a1a2e; color: #e0e0e0; padding: 1rem; border-radius: 10px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin-top: 1rem;"><code>WebDriverWait(driver, 15).until(
+    EC.presence_of_element_located((By.ID, "tbl-berg"))
+)
+match = re.search(r"prd=(\d+)", href)</code></pre>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;"><strong>Outcome:</strong> Achieved reliable
+                        extraction of 547 unique product IDs with 99%+ success rate.</p>
+                </div>
+
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Challenge 3: Data Standardization
+                        Across Inconsistent Schemas</h3>
+                    <p>547 CSV files from different time periods had varying column structures, naming conventions, and
+                        data formats.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Developed
+                        flexible concatenation with pandas, created standardized column ordering, implemented missing
+                        column detection and null value handling, and built quality validation checks.</p>
+                    <pre
+                        style="background: #1a1a2e; color: #e0e0e0; padding: 1rem; border-radius: 10px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin-top: 1rem;"><code>df_combined = pd.concat(dataframes, axis=0, ignore_index=True, sort=True)
+for col in desired_order:
+    if col not in df.columns:
+        df[col] = None</code></pre>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;"><strong>Outcome:</strong> Successfully unified 547
+                        disparate CSV files into a single, clean dataset.</p>
+                </div>
+
+                <div
+                    style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">Challenge 4: Data Quality Assurance &
+                        Completeness Verification</h3>
+                    <p>Ensuring data integrity across the entire pipeline — from web scraping to final consolidated
+                        dataset — with no silent failures or data loss.</p>
+                    <p style="margin-top: 1rem;"><strong style="color: var(--text-main);">Solution:</strong> Implemented
+                        multi-stage validation checks at each pipeline step, created comprehensive logging, built data
+                        lineage tracking with source file identification, and developed automated quality metrics.</p>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;"><strong>Outcome:</strong> Achieved complete data
+                        accountability with zero data loss and full audit trail.</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- The Approach and Process -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">The Pipeline: 5 Project
+                Files</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem;">
+
+                <!-- Script 1 -->
+                <details
+                    style="background: rgba(255,255,255,0.5); border-radius: 14px; border: 1px solid var(--glass-border); overflow: hidden;">
+                    <summary
+                        style="padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; color: var(--text-main); font-size: 1.05rem;">
+                        1. Main Iceberg Data Scraper &middot; <code
+                            style="font-size: 0.9rem; color: var(--accent-blue);">script.py</code></summary>
+                    <div style="padding: 0 1.5rem 1.5rem;">
+                        <p style="margin-bottom: 1rem;">Comprehensive web scraping and data collection pipeline. Loads
+                            iceberg file references, uses Selenium WebDriver to automate browser interactions, scrapes
+                            the US Ice Center website, extracts product IDs from download URLs, and automatically
+                            downloads all 547 CSV files.</p>
+                        <details style="margin-bottom: 1rem;">
+                            <summary style="cursor: pointer; font-weight: 600; color: var(--accent-blue); font-size: 0.95rem;">Code &darr;</summary>
+                            <pre style="background: #1a1a2e; color: #e0e0e0; padding: 1.5rem; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; margin-top: 0.75rem;"><code>import os
+import re
+import time
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# === Step 1: Load your CSV ===
+df_input = pd.read_csv("iceberg_files.csv")
+df_input.columns = df_input.columns.str.strip().str.lower()
+df_input["filename"] = df_input["filename"].str.strip().str.lower()
+
+# === Step 2: Set up Selenium ===
+options = Options()
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
+driver = webdriver.Chrome(service=service, options=options)
+driver.get("https://usicecenter.gov/Products/ArchiveSearchMulti?...")
+
+# === Step 3: Set the start date and click Search ===
+try:
+    WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.ID, "startdate-pick"))
+    )
+    start_date_input = driver.find_element(By.ID, "startdate-pick")
+    start_date_input.clear()
+    start_date_input.send_keys("11/07/2014")
+    search_button = driver.find_element(By.ID, "search")
+    search_button.click()
+    WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.ID, "tbl-berg"))
+    )
+except Exception as e:
+    print("Could not load results table.")
+    driver.quit()
+    exit()
+
+# === Step 4: Parse HTML and extract prd values ===
+soup = BeautifulSoup(driver.page_source, "html.parser")
+driver.quit()
+
+records = []
+for a in soup.find_all("a", href=True):
+    text = a.get_text(strip=True)
+    href = a["href"]
+    if text.endswith(".csv") and "DownloadArchive?prd=" in href:
+        filename = text.strip().lower()
+        match = re.search(r"prd=(\d+)", href)
+        if match:
+            prd = match.group(1)
+            records.append({"filename": filename, "prd": prd})
+
+# === Step 5: Merge with your CSV and save ===
+df_final = pd.merge(df_input, df_links, on="filename", how="left")
+df_final.to_csv("iceberg_files_with_prd.csv", index=False)
+
+# === Step 6: Download files ===
+output_folder = "iceberg_csvs"
+os.makedirs(output_folder, exist_ok=True)
+base_url = "https://usicecenter.gov/File/DownloadArchive?prd="
+for i, row in df_final.iterrows():
+    filename = row["filename"]
+    prd = row["prd"]
+    if pd.notnull(prd):
+        url = f"{base_url}{prd}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            with open(os.path.join(output_folder, filename), "wb") as f:
+                f.write(response.content)</code></pre>
+                        </details>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Web
+                                Scraping</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Selenium</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">BeautifulSoup</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Regex</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Script 2 -->
+                <details
+                    style="background: rgba(255,255,255,0.5); border-radius: 14px; border: 1px solid var(--glass-border); overflow: hidden;">
+                    <summary
+                        style="padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; color: var(--text-main); font-size: 1.05rem;">
+                        2. Data Consolidation &middot; <code
+                            style="font-size: 0.9rem; color: var(--accent-blue);">merge_iceberg_csvs.py</code></summary>
+                    <div style="padding: 0 1.5rem 1.5rem;">
+                        <p style="margin-bottom: 1rem;">Combines 547 individual CSV files into a single unified dataset.
+                            Scans directory for all CSVs, concatenates DataFrames with column alignment, handles missing
+                            data, and adds source file tracking for data lineage.</p>
+                        <details style="margin-bottom: 1rem;">
+                            <summary style="cursor: pointer; font-weight: 600; color: var(--accent-blue); font-size: 0.95rem;">Code &darr;</summary>
+                            <pre style="background: #1a1a2e; color: #e0e0e0; padding: 1.5rem; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; margin-top: 0.75rem;"><code>import pandas as pd
+import os
+from glob import glob
+
+folder_path = "iceberg_csvs"
+output_file = "antarctic_icebergs_combined.csv"
+
+csv_files = glob(os.path.join(folder_path, "*.csv"))
+print(f"Found {len(csv_files)} CSV files.")
+
+dataframes = []
+for file in csv_files:
+    try:
+        df = pd.read_csv(file)
+        df["source_file"] = os.path.basename(file)
+        dataframes.append(df)
+    except Exception as e:
+        print(f"Failed to read {file}: {e}")
+
+df_combined = pd.concat(dataframes, axis=0, ignore_index=True, sort=True)
+df_combined.to_csv(output_file, index=False)
+print(f"Combined CSV saved as '{output_file}' with shape {df_combined.shape}")</code></pre>
+                        </details>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Pandas</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Data
+                                Merging</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Error
+                                Handling</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Script 3 -->
+                <details
+                    style="background: rgba(255,255,255,0.5); border-radius: 14px; border: 1px solid var(--glass-border); overflow: hidden;">
+                    <summary
+                        style="padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; color: var(--text-main); font-size: 1.05rem;">
+                        3. Data Standardization &middot; <code
+                            style="font-size: 0.9rem; color: var(--accent-blue);">fix_csv.py</code></summary>
+                    <div style="padding: 0 1.5rem 1.5rem;">
+                        <p style="margin-bottom: 1rem;">Reorders and standardizes column structure: Iceberg, Last
+                            Update, Latitude, Longitude, Length/Width, Area metrics, Remarks. Adds missing columns with
+                            null values and enforces consistent schema.</p>
+                        <details style="margin-bottom: 1rem;">
+                            <summary style="cursor: pointer; font-weight: 600; color: var(--accent-blue); font-size: 0.95rem;">Code &darr;</summary>
+                            <pre style="background: #1a1a2e; color: #e0e0e0; padding: 1.5rem; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; margin-top: 0.75rem;"><code>import pandas as pd
+
+input_file = "antarctic_icebergs_combined.csv"
+output_file = "antarctic_icebergs_combined_reordered.csv"
+
+desired_order = [
+    "Iceberg", "Last Update", "Latitude", "Longitude",
+    "Length (NM)", "Width (NM)",
+    "Area (sqKM)", "Area (sqMI)", "Area (sqNM)",
+    "Remarks", "source_file"
+]
+
+df = pd.read_csv(input_file)
+
+for col in desired_order:
+    if col not in df.columns:
+        df[col] = None
+
+df = df[desired_order]
+df.to_csv(output_file, index=False)
+print(f"Reordered CSV saved to: {output_file}")</code></pre>
+                        </details>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Schema
+                                Design</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Data
+                                Quality</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Script 4 -->
+                <details
+                    style="background: rgba(255,255,255,0.5); border-radius: 14px; border: 1px solid var(--glass-border); overflow: hidden;">
+                    <summary
+                        style="padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; color: var(--text-main); font-size: 1.05rem;">
+                        4. File Validation &middot; <code
+                            style="font-size: 0.9rem; color: var(--accent-blue);">search.py</code></summary>
+                    <div style="padding: 0 1.5rem 1.5rem;">
+                        <p style="margin-bottom: 1rem;">Validates downloaded files against expected list. Compares
+                            expected vs. actual downloads, identifies missing files, generates completion reports, and
+                            ensures data pipeline integrity.</p>
+                        <details style="margin-bottom: 1rem;">
+                            <summary style="cursor: pointer; font-weight: 600; color: var(--accent-blue); font-size: 0.95rem;">Code &darr;</summary>
+                            <pre style="background: #1a1a2e; color: #e0e0e0; padding: 1.5rem; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; margin-top: 0.75rem;"><code>import os
+import pandas as pd
+
+download_folder = "iceberg_csvs"
+expected_csv = "iceberg_files_with_prd.csv"
+output_txt = "missing_files.txt"
+
+df_expected = pd.read_csv(expected_csv)
+df_expected["filename"] = df_expected["filename"].str.strip().str.lower()
+
+downloaded_files = [
+    f.lower() for f in os.listdir(download_folder)
+    if f.endswith(".csv")
+]
+
+missing = df_expected[
+    ~df_expected["filename"].isin(downloaded_files)
+]
+
+if not missing.empty:
+    with open(output_txt, "w") as f:
+        for name in missing["filename"]:
+            f.write(name + "\n")
+    print(f"Missing {len(missing)} file(s). See {output_txt}.")
+else:
+    print("All expected files are present.")</code></pre>
+                        </details>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Validation</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Auditing</span>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Script 5 -->
+                <details
+                    style="background: rgba(255,255,255,0.5); border-radius: 14px; border: 1px solid var(--glass-border); overflow: hidden;">
+                    <summary
+                        style="padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; color: var(--text-main); font-size: 1.05rem;">
+                        5. Data Exploration &middot; <code
+                            style="font-size: 0.9rem; color: var(--accent-blue);">test.py</code></summary>
+                    <div style="padding: 0 1.5rem 1.5rem;">
+                        <p style="margin-bottom: 1rem;">Quick data inspection and debugging tool. Loads and displays
+                            sample data, shows DataFrame structure and column names, and provides data preview for
+                            troubleshooting.</p>
+                        <details style="margin-bottom: 1rem;">
+                            <summary style="cursor: pointer; font-weight: 600; color: var(--accent-blue); font-size: 0.95rem;">Code &darr;</summary>
+                            <pre style="background: #1a1a2e; color: #e0e0e0; padding: 1.5rem; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; margin-top: 0.75rem;"><code>import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import re
+
+df_input = pd.read_csv("iceberg_files.csv")
+print("\n🧪 First 5 rows:")
+print(df_input.head())
+
+print("\n📋 Column names:")
+print(df_input.columns.tolist())</code></pre>
+                        </details>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Debugging</span>
+                            <span
+                                style="background: rgba(0,180,216,0.12); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Exploration</span>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Final Statement -->
+            <p
+                style="font-weight: 600; font-size: 1.1rem; color: var(--text-main); text-align: center; padding: 2rem 0;">
+                This project demonstrates end-to-end data engineering capabilities — from web automation to large-scale
+                data processing, quality control, and business intelligence preparation for geospatial analytics.</p>
+
+            <!-- Data Sources -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Data Sources</h2>
+
+            <div
+                style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border); margin-bottom: 2rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">US National Ice Center</h3>
+                <p><strong>Source:</strong> <a href="https://usicecenter.gov/Products/AntarcIcebergs" target="_blank"
+                        style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">USNIC Antarctic
+                        Icebergs</a></p>
+                <p style="margin-top: 0.75rem;"><strong>Dataset:</strong> Antarctic Iceberg Tracking Archive</p>
+                <p style="margin-top: 0.75rem;"><strong>Coverage:</strong> 547 individual CSV files spanning 2014–2025
+                </p>
+                <p style="margin-top: 0.75rem;"><strong>Data Points:</strong> Position (lat/long), size (length, width,
+                    area), update timestamps, and remarks</p>
+            </div>
+
+            <!-- View Dashboard CTA -->
+            <div style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">
+                <a href="https://public.tableau.com/app/profile/mark.rubin7829/viz/AntarcticaIcebergs/AntarcticaIcebergs"
+                    target="_blank" class="btn" style="padding: 1.25rem 3rem; font-size: 1.15rem; color: #000;">View
+                    Interactive Tableau Dashboard &rarr;</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Climate Data Visualizations. All rights reserved.</p>
+        <p>&copy; 2026 The Lasting Wake. All rights reserved.</p>
     </footer>
 
     <script src="../script.js"></script>
 </body>
+
 </html>
