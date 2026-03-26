@@ -174,6 +174,50 @@
                 </div>
             </div>
         </div>
+
+        <!-- Phoenix location card -->
+        <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 1.75rem; background: rgba(255,255,255,0.45); border: 1px solid var(--glass-border); border-radius: 20px; padding: 1.5rem 2.5rem; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.1rem;">
+                <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">Based in</span>
+                <span style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); line-height: 1;">Phoenix, AZ</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Valley of the Sun</span>
+            </div>
+
+            <!-- Arizona SVG with Phoenix dot -->
+            <div style="position: relative; width: 90px; height: 104px;">
+                <svg viewBox="0 0 90 104" width="90" height="104" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Arizona state outline: notch in upper-left for Four Corners -->
+                    <path d="M22,0 L90,0 L90,104 L0,104 L0,28 L22,28 Z"
+                        fill="rgba(0,180,216,0.08)"
+                        stroke="var(--accent-blue)"
+                        stroke-width="1.5"
+                        stroke-linejoin="round"/>
+                    <!-- Phoenix is roughly 40% from left, 68% from top -->
+                    <!-- Pulsing ring -->
+                    <circle cx="48" cy="68" r="8" fill="none" stroke="var(--accent-blue)" stroke-width="1" opacity="0.4">
+                        <animate attributeName="r" values="6;14;6" dur="2.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <!-- Dot -->
+                    <circle cx="48" cy="68" r="4" fill="var(--accent-blue)"/>
+                </svg>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    MST &mdash; UTC&minus;7
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Arizona, USA
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    300+ sunny days a year
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>

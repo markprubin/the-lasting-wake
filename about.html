@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <!-- Home Link -->
@@ -20,7 +22,11 @@
         <span></span>
     </button>
     <nav class="about-drawer" id="about-drawer">
-        <a href="index.html" class="drawer-home-icon" aria-label="Home"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
+        <a href="index.html" class="drawer-home-icon" aria-label="Home"><svg width="36" height="36" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg></a>
         <button class="close-drawer" id="close-drawer" aria-label="Close Menu">&times;</button>
         <div class="drawer-content">
             <ul class="drawer-nav">
@@ -37,17 +43,133 @@
 
     <main class="page-content">
         <h1 class="page-title">About</h1>
-        <h2 class="page-subtitle">Data storyteller. Community connector. <span class="highlight">Climate advocate.</span></h2>
-        
-        <div class="text-block">
-            <p>I believe data has the power to drive meaningful change—and I've spent 5+ years proving it. From visualizing drought patterns in Washington's Yakima Basin to tracking scorching temperature anomalies in Arizona, I transform complex datasets into stories that spark action and inform decisions.</p>
-            
-            <p>My work lives at the intersection of technical precision and human impact. I've built dashboards that help water managers understand century-long climate trends, mapped crime patterns to inform safer communities, and analyzed Formula 1 performance data to settle the GOAT debate. Whether it's Tableau, Python, or QGIS, the tools are just the beginning—the real work is making the invisible visible.</p>
-            
-            <p>What drives me? Using data to address our most pressing challenges. I'm currently focused on climate data analysis and sustainability reporting, combining technical expertise with a commitment to environmental and social justice. I've completed climate fellowships with <a href="http://terra.do/" target="_blank">Terra.do</a> and Climatebase, and I'm pursuing graduate education in ocean conservation because I believe data professionals belong in the community, not just behind the screen.</p>
-            
-            <p>I bring more than analytics—I bring curiosity, collaboration, and a belief that the best insights come from listening as much as analyzing. Let's use data to build something that matters.</p>
+        <h2 class="page-subtitle">Data storyteller. Community connector. <span class="highlight">Climate
+                advocate.</span></h2>
+
+        <div style="display: flex; gap: 3.5rem; align-items: flex-start; flex-wrap: wrap;">
+
+            <!-- Headshot Card -->
+            <div class="about-card">
+                <div class="about-card-img-wrap">
+                    <img src="content/images/headshot.png" alt="Mark Rubin">
+                </div>
+                <div class="about-card-content">
+                    <h3>Mark Rubin</h3>
+                </div>
+            </div>
+
+            <!-- Bio Text -->
+            <div class="text-block" style="flex: 1; min-width: 280px; margin-top: 0;">
+                <p>I believe data has the power to drive meaningful change—and I've spent 5+ years proving it. From
+                    visualizing drought patterns in Washington's Yakima Basin to tracking scorching temperature
+                    anomalies in
+                    Arizona, I transform complex datasets into stories that spark action and inform decisions.</p>
+
+                <p>My work lives at the intersection of technical precision and human impact. I've built dashboards that
+                    help water managers understand century-long climate trends, mapped crime patterns to inform safer
+                    communities, and analyzed Formula 1 performance data to settle the GOAT debate. Whether it's
+                    Tableau,
+                    Python, or QGIS, the tools are just the beginning—the real work is making the invisible visible.</p>
+
+                <p>What drives me? Using data to address our most pressing challenges. I'm currently focused on climate
+                    data
+                    analysis and sustainability reporting, combining technical expertise with a commitment to
+                    environmental
+                    and social justice. I've completed climate fellowships with <a href="http://terra.do/"
+                        target="_blank">Terra.do</a> and <a href="https://www.climatebase.org/"
+                        target="_blank">Climatebase</a>, and I'm pursuing graduate education in ocean conservation
+                    because I
+                    believe data professionals belong in the community, not just behind the screen.</p>
+
+                <p>I bring more than analytics—I bring curiosity, collaboration, and a belief that the best insights
+                    come
+                    from listening as much as analyzing. Let's use data to build something that matters.</p>
+            </div>
         </div>
+
+        <style>
+            .about-card {
+                position: relative;
+                width: 280px;
+                height: 400px;
+                border-radius: 20px;
+                overflow: hidden;
+                background: var(--glass-bg);
+                border: 1px solid var(--glass-border);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+                flex-shrink: 0;
+                transform: rotate(-2deg);
+                transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            }
+
+            .about-card:hover {
+                transform: rotate(0deg) scale(1.03) translateY(-10px);
+                box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            }
+
+            .about-card-img-wrap {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .about-card-img-wrap img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+                filter: grayscale(80%) contrast(1.2);
+                opacity: 0.6;
+                transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .about-card:hover .about-card-img-wrap img {
+                filter: grayscale(0%) contrast(1);
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            .about-card-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 3rem 1.5rem 1.5rem;
+                background: linear-gradient(to top, rgba(251, 247, 240, 0.95) 0%, rgba(251, 247, 240, 0.7) 60%, transparent 100%);
+                transform: translateY(100%);
+                opacity: 0;
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+            }
+
+            .about-card:hover .about-card-content {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .about-card-content h3 {
+                font-size: 1.4rem;
+                font-weight: 700;
+                margin-bottom: 0.2rem;
+                color: var(--text-main);
+            }
+
+            .about-card-content span {
+                font-size: 0.8rem;
+                color: #0077b6;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                font-weight: 800;
+            }
+
+            @media (max-width: 680px) {
+                .about-card {
+                    width: 100%;
+                    height: 360px;
+                    transform: none;
+                }
+            }
+        </style>
     </main>
 
     <footer>
@@ -55,4 +177,5 @@
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
