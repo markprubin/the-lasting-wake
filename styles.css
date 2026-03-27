@@ -793,3 +793,157 @@ footer {
     color: var(--text-main);
     padding-left: 1.5rem;
 }
+
+/* ================================
+   Mobile Styles (max-width: 767px)
+   ================================ */
+@media (max-width: 767px) {
+
+    /* Modal — slides up as a bottom sheet */
+    .modal {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-content.glass {
+        border-radius: 20px 20px 0 0;
+        max-height: 92vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(100%);
+    }
+
+    .modal.active .modal-content {
+        transform: translateY(0) scale(1);
+    }
+
+    .modal-body {
+        flex: 1;
+        min-height: 0;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+
+    /* Image + Deeper Dive: pinned at top, never scrolls away */
+    .modal-stationary-sidebar {
+        order: -1;
+        flex-shrink: 0;
+    }
+
+    .modal-image-container img {
+        max-height: 180px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    /* Sidebar buttons full-width */
+    .modal-stationary-sidebar > div {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .modal-stationary-sidebar .btn {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.85rem;
+        border-radius: 20px;
+    }
+
+    /* Left column — flex column, skills pinned at bottom */
+    .modal-left-column {
+        flex: 1;
+        min-height: 0;
+        max-height: none;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Only the text scrolls */
+    .modal-scrollable-content {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-right: 0;
+    }
+
+    /* Skills pinned below the text */
+    .modal-skills-section {
+        flex-shrink: 0;
+    }
+
+    .modal-scrollable-content h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .modal-scrollable-content p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    /* Skills — smaller icons */
+    .modal-skills-section {
+        gap: 0.6rem;
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+    }
+
+    .modal-software-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+    }
+
+    .modal-software-icon .icon-face img {
+        width: 30px;
+    }
+
+    .modal-software-icon .icon-title {
+        font-size: 0.6rem;
+        letter-spacing: 0;
+    }
+
+    .modal-skill-tag {
+        font-size: 0.78rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* Close button — larger tap target */
+    .close-button {
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    /* Gallery */
+    .gallery-container {
+        gap: 2rem;
+        padding-top: 3rem;
+    }
+
+    .gallery-item {
+        width: min(300px, 85vw);
+        height: 420px;
+    }
+
+    /* Interior pages */
+    .page-content {
+        margin-top: 5.5rem;
+        padding: 1.25rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .page-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+    }
+}
