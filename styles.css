@@ -800,19 +800,20 @@ footer {
    ================================ */
 @media (max-width: 767px) {
 
-    /* Modal — full screen */
+    /* Modal — floating bottom sheet */
     .modal {
-        padding: 0;
+        padding: 1rem;
         align-items: flex-end;
     }
 
     .modal-content.glass {
-        border-radius: 20px 20px 0 0;
-        height: 100%;
+        border-radius: 20px;
+        max-height: 88vh;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         transform: translateY(100%);
+        width: 100%;
     }
 
     .modal.active .modal-content {
@@ -825,11 +826,16 @@ footer {
         max-height: none;
         flex-direction: column;
         overflow: hidden;
-        padding: 3.5rem 1.25rem 0;
+        padding: 1.5rem 1.25rem 0;
         gap: 0.75rem;
     }
 
-    /* Text + skills: top section, text scrolls */
+    /* Hide image on mobile */
+    .modal-image-container {
+        display: none;
+    }
+
+    /* Left column fills space, text scrolls */
     .modal-left-column {
         flex: 1;
         min-height: 0;
@@ -846,30 +852,25 @@ footer {
         padding-right: 0;
     }
 
+    /* Skills pinned below text */
     .modal-skills-section {
         flex-shrink: 0;
         gap: 0.5rem;
         margin-top: 0.75rem;
         padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
+        padding-bottom: 0;
     }
 
-    /* Image + button: pinned at bottom, don't grow */
+    /* Sidebar — just the button, no image */
     .modal-stationary-sidebar {
         flex: none;
-        gap: 0.5rem;
-    }
-
-    .modal-image-container img {
-        max-height: 120px;
-        object-fit: cover;
-        border-radius: 12px;
+        gap: 0;
     }
 
     .modal-stationary-sidebar .btn {
-        padding: 0.6rem 1.25rem;
-        font-size: 0.85rem;
-        border-radius: 20px;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
     }
 
     .modal-scrollable-content h2 {
