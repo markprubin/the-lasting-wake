@@ -400,6 +400,7 @@ h1 {
     gap: 1rem;
     margin-top: 2rem;
     padding-top: 2rem;
+    padding-bottom: 2rem;
     border-top: 1px solid var(--glass-border);
     align-items: center;
 }
@@ -872,8 +873,11 @@ footer {
     /* Skills pinned below the text, scrollable if too many */
     .modal-skills-section {
         flex-shrink: 0;
-        max-height: 130px;
+        max-height: 90px;
         overflow-y: auto;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
     }
 
     .modal-scrollable-content h2 {
@@ -894,9 +898,9 @@ footer {
     }
 
     .modal-software-icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 10px;
+        width: 46px;
+        height: 46px;
+        border-radius: 8px;
     }
 
     .modal-software-icon .icon-face img {
