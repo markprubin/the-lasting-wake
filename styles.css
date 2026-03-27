@@ -405,9 +405,9 @@ h1 {
 }
 
 .modal-software-icon {
-    width: 75px;
-    height: 75px;
-    border-radius: 14px;
+    width: 62px;
+    height: 62px;
+    border-radius: 12px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     display: flex;
@@ -423,7 +423,7 @@ h1 {
 }
 
 .modal-software-icon .icon-face img {
-    width: 40px;
+    width: 32px;
     height: auto;
     object-fit: contain;
 }
@@ -449,10 +449,10 @@ h1 {
 .modal-skill-tag {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.85rem;
     border-radius: 20px;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--text-main);
 }
 
