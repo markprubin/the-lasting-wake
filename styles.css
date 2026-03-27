@@ -869,9 +869,11 @@ footer {
         padding-right: 0;
     }
 
-    /* Skills pinned below the text */
+    /* Skills pinned below the text, scrollable if too many */
     .modal-skills-section {
         flex-shrink: 0;
+        max-height: 130px;
+        overflow-y: auto;
     }
 
     .modal-scrollable-content h2 {
