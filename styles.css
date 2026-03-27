@@ -913,6 +913,12 @@ footer {
         padding: 0.4rem 0.8rem;
     }
 
+    /* Hide nav when modal open on mobile */
+    body:has(.modal.active) .home-link,
+    body:has(.modal.active) .menu-toggle {
+        display: none;
+    }
+
     /* Close button — larger tap target */
     .close-button {
         width: 44px;
