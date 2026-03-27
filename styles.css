@@ -807,7 +807,7 @@ footer {
 
     .modal-content.glass {
         border-radius: 20px 20px 0 0;
-        max-height: 92vh;
+        max-height: 100dvh;
         overflow: hidden;
         display: flex;
         flex-direction: column;
