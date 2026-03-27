@@ -800,7 +800,7 @@ footer {
    ================================ */
 @media (max-width: 767px) {
 
-    /* Modal — slides up as a bottom sheet */
+    /* Modal — full screen */
     .modal {
         padding: 0;
         align-items: flex-end;
@@ -822,37 +822,14 @@ footer {
     .modal-body {
         flex: 1;
         min-height: 0;
+        max-height: none;
         flex-direction: column;
         overflow: hidden;
-        padding: 1.25rem;
-        gap: 1rem;
+        padding: 3.5rem 1.25rem 0;
+        gap: 0.75rem;
     }
 
-    /* Image + Deeper Dive: pinned at top, never scrolls away */
-    .modal-stationary-sidebar {
-        order: -1;
-        flex-shrink: 0;
-    }
-
-    .modal-image-container img {
-        max-height: 180px;
-        object-fit: cover;
-        border-radius: 12px;
-    }
-
-    /* Sidebar buttons full-width */
-    .modal-stationary-sidebar > div {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .modal-stationary-sidebar .btn {
-        padding: 0.6rem 1.25rem;
-        font-size: 0.85rem;
-        border-radius: 20px;
-    }
-
-    /* Left column — flex column, skills pinned at bottom */
+    /* Text + skills: top section, text scrolls */
     .modal-left-column {
         flex: 1;
         min-height: 0;
@@ -862,7 +839,6 @@ footer {
         flex-direction: column;
     }
 
-    /* Only the text scrolls */
     .modal-scrollable-content {
         flex: 1;
         min-height: 0;
@@ -870,15 +846,30 @@ footer {
         padding-right: 0;
     }
 
-    /* Skills pinned below the text, scrollable if too many */
     .modal-skills-section {
         flex-shrink: 0;
-        max-height: 90px;
-        overflow-y: auto;
         gap: 0.5rem;
         margin-top: 0.75rem;
         padding-top: 0.75rem;
-        padding-bottom: 0;
+        padding-bottom: 0.75rem;
+    }
+
+    /* Image + button: pinned at bottom, don't grow */
+    .modal-stationary-sidebar {
+        flex: none;
+        gap: 0.5rem;
+    }
+
+    .modal-image-container img {
+        max-height: 120px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .modal-stationary-sidebar .btn {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.85rem;
+        border-radius: 20px;
     }
 
     .modal-scrollable-content h2 {
@@ -889,13 +880,6 @@ footer {
     .modal-scrollable-content p {
         font-size: 0.95rem;
         line-height: 1.7;
-    }
-
-    /* Skills — smaller icons */
-    .modal-skills-section {
-        gap: 0.6rem;
-        margin-top: 1.25rem;
-        padding-top: 1.25rem;
     }
 
     .modal-software-icon {
