@@ -830,6 +830,10 @@ footer {
     background: rgba(255, 255, 255, 0.8);
 }
 
+body:has(.about-drawer.open) .connected-earth-link {
+    transform: translateX(-460px);
+}
+
 /* ================================
    Mobile Styles (max-width: 767px)
    ================================ */
