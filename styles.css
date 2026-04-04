@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Citrica';
+    src: url('content/fonts/Citrica-Regular.eot'),
+         url('content/fonts/Citrica-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --bg-dark: #fbf7f0; /* Soft sunlit beach sand */
     --text-main: #0b2241; /* Deep ocean navy */
@@ -67,11 +75,13 @@ body {
 
 /* Typography */
 h1 {
+    font-family: 'Citrica', sans-serif;
     font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 800;
+    font-weight: 300;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
 }
 
 .highlight {
