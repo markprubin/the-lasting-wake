@@ -2,17 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dummy Data for the Tableau Projects
     const projects = [
         {
-            id: 1,
-            title: "Polar Sea Ice in Decline",
-            category: "Climate Analysis",
-            image: "content/images/project-1-dashboard.png",
-            description: "<p>The polar ice caps are often talked about together, but their stories are strikingly different — and this visualization makes that clear at a glance.</p><p>Two side-by-side panels track every month of sea ice data from 1979 to 2024, with each dot colored on a spectrum from deep blue (more ice than average) to deep red (far less). The Arctic panel tells a story of relentless, unbroken decline — barely a blue dot to be found after the mid-2000s. The Antarctic panel looks almost normal for decades, then something breaks around 2016: a sudden, dramatic collapse that scientists are still working to fully explain.</p><p>By placing both hemispheres on the same scale and color scheme, the dashboard lets you compare not just the trends, but the pace and character of change at each pole — and the uncomfortable takeaway is that neither is recovering.</p>",
+            id: 6,
+            title: "Phoenix is Only Getting Hotter",
+            category: "Urban Heat",
+            image: "content/images/project-6-dashboard.png",
+            modalImage: "content/images/project-6-modal.png",
+            description: "<p>This is a fully interactive infographic — not just a chart you look at, but one you control. Set against a warm cream background with a pastel palette pulled from a desert sunrise, it's designed to be felt as much as read.</p><p>A single degree counter drives everything. Adjust it and the entire infographic responds at once — the scatter plot, the Top 10 table, the 85-year streak bars all update live. On the scatter plot, days that meet the threshold fill in solid; days below stay hollow. Lower the counter and watch those filled dots bleed into spring and fall — seasons that historically never saw that kind of heat. That moment of recognition is what the whole infographic is built around.</p><p>In 2024, Phoenix logged 133 days at or above 100°F, tied with 2020 for the all-time record. The streak chart stretching back to 1941 makes the direction of travel impossible to argue with.</p>",
+            software: [
+                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
+            ],
+            skills: ["API Integration", "Data Engineering", "Climate Science"]
+        },
+        {
+            id: 5,
+            title: "Yakima County's Water Crisis",
+            category: "Water Crisis",
+            image: "content/images/project-5-pdsi.png",
+            description: "<p>The Yakima Basin in central Washington feeds some of the most productive farmland in the country — apples, hops, wine grapes — and it runs almost entirely on snowmelt stored in five mountain reservoirs. In recent years, those reservoirs have been failing to refill. This project tells that story through three visualizations, and was published by the Center for Environmental Law & Policy.</p><p>A geographic map shows all five reservoirs at once, represented as glass containers — and most of them are nearly empty, the largest sitting at just 16% capacity. A 130-year chart of Cle Elum Reservoir reveals what normal used to look like: reliable seasonal swings, tanks that reliably topped off each spring. The recent years sit far below those historical lines. And a color-coded drought index stretching back to 1893 shows the unmistakable shift: after 2013, the region entered a period of extended, worsening drought that shows no sign of reverting.</p><p>Taken together, the three charts make a case that's hard to argue with — this isn't a bad year, or even a bad decade. It's a new baseline.</p>",
             software: [
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
-                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
-                { name: "Excel", src: "https://img.icons8.com/?size=96&id=y5utoW4FUM92&format=png" }
+                { name: "Mapbox", src: "https://cdn.simpleicons.org/mapbox/4264FB" }
             ],
-            skills: ["Data Analysis", "Climate Science", "Data Visualization"]
+            skills: ["Illustrative Design", "Community Engagement"]
         },
         {
             id: 2,
@@ -25,6 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" }
             ],
             skills: ["Data Visualization", "Climate Science", "Data Cleaning"]
+        },
+        {
+            id: 1,
+            title: "Polar Sea Ice in Decline",
+            category: "Climate Analysis",
+            image: "content/images/project-1-dashboard.png",
+            description: "<p>The polar ice caps are often talked about together, but their stories are strikingly different — and this visualization makes that clear at a glance.</p><p>Two side-by-side panels track every month of sea ice data from 1979 to 2024, with each dot colored on a spectrum from deep blue (more ice than average) to deep red (far less). The Arctic panel tells a story of relentless, unbroken decline — barely a blue dot to be found after the mid-2000s. The Antarctic panel looks almost normal for decades, then something breaks around 2016: a sudden, dramatic collapse that scientists are still working to fully explain.</p><p>By placing both hemispheres on the same scale and color scheme, the dashboard lets you compare not just the trends, but the pace and character of change at each pole — and the uncomfortable takeaway is that neither is recovering.</p>",
+            software: [
+                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
+                { name: "Python", src: "https://cdn.simpleicons.org/python/3776AB" },
+                { name: "Excel", src: "https://img.icons8.com/?size=96&id=y5utoW4FUM92&format=png" }
+            ],
+            skills: ["Data Analysis", "Climate Science", "Data Visualization"]
         },
         {
             id: 3,
@@ -48,18 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
             ],
             skills: ["Web Scraping", "Data Engineering", "Geospatial Analysis"]
-        },
-        {
-            id: 5,
-            title: "Yakima County's Water Crisis",
-            category: "Water Crisis",
-            image: "content/images/project-5-pdsi.png",
-            description: "<p>The Yakima Basin in central Washington feeds some of the most productive farmland in the country — apples, hops, wine grapes — and it runs almost entirely on snowmelt stored in five mountain reservoirs. In recent years, those reservoirs have been failing to refill. This project tells that story through three visualizations, and was published by the Center for Environmental Law & Policy.</p><p>A geographic map shows all five reservoirs at once, represented as glass containers — and most of them are nearly empty, the largest sitting at just 16% capacity. A 130-year chart of Cle Elum Reservoir reveals what normal used to look like: reliable seasonal swings, tanks that reliably topped off each spring. The recent years sit far below those historical lines. And a color-coded drought index stretching back to 1893 shows the unmistakable shift: after 2013, the region entered a period of extended, worsening drought that shows no sign of reverting.</p><p>Taken together, the three charts make a case that's hard to argue with — this isn't a bad year, or even a bad decade. It's a new baseline.</p>",
-            software: [
-                { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" },
-                { name: "Mapbox", src: "https://cdn.simpleicons.org/mapbox/4264FB" }
-            ],
-            skills: ["Illustrative Design", "Community Engagement"]
         }
     ];
 
@@ -111,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openModal(project) {
         if (!modal) return;
-        modalImage.src = project.image;
+        modalImage.src = project.modalImage || project.image;
         modalTitle.textContent = project.title;
         if (deeperDiveLink) deeperDiveLink.href = `content/project-${project.id}.html`;
 

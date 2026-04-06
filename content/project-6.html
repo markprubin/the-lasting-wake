@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoenix is Only Getting Hotter | The Lasting Wake</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <!-- Home Link -->
+    <a href="../index.html" class="home-link">Home</a>
+
+    <a href="https://www.theconnected.earth" target="_blank" class="connected-earth-link">
+        <img src="../content/images/Logo_Circle.png" alt="The Connected Earth">The Connected Earth
+    </a>
+
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Hidden Menu Drawer -->
+    <nav class="about-drawer" id="about-drawer">
+        <a href="../index.html" class="drawer-home-icon" aria-label="Home">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+        </a>
+        <button class="close-drawer" id="close-drawer" aria-label="Close Menu">&times;</button>
+        <div class="drawer-content">
+            <ul class="drawer-nav">
+                <li><a href="../about.html" class="drawer-link">About</a></li>
+                <li><a href="../publications.html" class="drawer-link">Publications</a></li>
+                <li><a href="../expertise.html" class="drawer-link">Expertise</a></li>
+                <li><a href="../theconnectedearth.html" class="drawer-link">The Connected Earth</a></li>
+                <li><a href="../contact.html" class="drawer-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <main class="page-content" style="max-width: 1000px;">
+        <a href="../index.html#portfolio" class="back-link">&larr; Back to Portfolio</a>
+
+        <h1 class="page-title" style="font-size: 3rem; line-height: 1.15;">Phoenix is Only Getting Hotter</h1>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+            <p class="page-subtitle" style="font-size: 1.4rem; margin-bottom: 0;">An interactive infographic — 85 years of Phoenix heat, designed to be felt as much as read</p>
+            <a href="https://public.tableau.com/views/Phoenixisonlygettinghotter___/PhxTemps" target="_blank" class="btn" style="width: auto; white-space: nowrap; padding: 0.65rem 1.25rem; font-size: 0.85rem; color: #000; flex-shrink: 0;">View Dashboard &rarr;</a>
+        </div>
+
+        <img src="images/project-6-dashboard.png" class="hero-image" alt="Phoenix Heat Streaks Dashboard">
+
+        <div class="text-block">
+
+            <!-- The Design -->
+            <div style="background: rgba(255,255,255,0.6); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 3rem;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main);">The Design Intent</h2>
+                <p>Most climate charts look like climate charts — grey axes, dense labels, a trend line you have to squint at. This one doesn't. Built on a warm cream background with a pastel palette pulled from a desert sunrise — teal, coral, lavender, soft orange — the infographic is designed to feel like something worth reading before a single number registers. The illustrated cactus silhouette and wavy ribbon motif in the corner anchor it visually in Phoenix without saying a word.</p>
+                <p style="margin-top: 1rem;">The goal was to build something that a resident, a journalist, or a policymaker could hand to someone who doesn't follow climate data and have them immediately understand what they're looking at.</p>
+            </div>
+
+            <!-- The Interactivity -->
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-main);">The Interactive Core</h2>
+            <p>The centerpiece of the dashboard is a <strong>degree counter</strong> — a single control that filters every element on the page simultaneously. Dial it from 90°F to 130°F and watch the seasonal scatter plot, the Top 10 years table, and the 85-year streak bar chart all respond at once. It transforms what could be a static summary into something you explore.</p>
+
+            <!-- Three panels -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2.5rem 0 3rem;">
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">Seasonal Scatter Plot</h3>
+                    <p>Each dot is a single day's high temperature, colored by season — teal for winter, red/coral for summer, orange for fall, and pink/salmon for spring. The degree counter does something clever here: dots that meet or exceed the selected threshold become <strong>filled</strong>, while days below it remain hollow outlines. As you raise the threshold, the filled dots retreat toward the peak of summer — but lower it to 100°F and watch what happens to the shoulders of the year. Filled dots start appearing in spring and fall, seasons that historically never reached those temperatures. That bleed — heat pushing into months it doesn't belong in — is the most unsettling thing the scatter plot reveals.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">Top 10 Years Table</h3>
+                    <p>As you move the degree counter, the table updates to show which years logged the most days at or above that threshold. It's a leaderboard that reshuffles depending on what kind of heat you're asking about — and no matter where you set it, recent years keep rising to the top. The occasional mid-century outlier reminds you this isn't new, but the pattern of who dominates is unmistakable.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 0.5rem; font-size: 1.2rem;">85-Year Streak Bar Chart</h3>
+                    <p>From 1941 to 2025, each bar represents the longest consecutive run of days above the selected threshold in that year. The pattern is clear: more recent years stack taller, the variation narrows, and the baseline creeps upward decade by decade. 2024 stands as a structural outlier — a record that resets expectations for what a Phoenix summer looks like going forward.</p>
+                </div>
+            </div>
+
+            <!-- The Bottom Line -->
+            <blockquote style="border-left: 4px solid var(--accent-red); padding: 1.5rem 2rem; margin: 0 0 3rem; background: rgba(255,255,255,0.4); border-radius: 0 12px 12px 0; font-size: 1.2rem; font-weight: 600; color: var(--text-main); line-height: 1.6;">
+                In 2024, Phoenix hit 100°F or higher for 133 days. The streaks are longer, the records keep falling, and the recent years dominate every leaderboard. This isn't a trend — it's the new baseline.
+            </blockquote>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Design & Color -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Design & Color System</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
+                <div style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Palette</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Warm cream background, teal for cool/winter data, coral and lavender for summer and interactive elements. The palette evokes a desert morning — familiar to Phoenix residents, approachable to everyone else.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Typography</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">A bold serif display font for the title creates editorial weight. Supporting text stays clean and light, keeping the emphasis on the data and the illustrated elements rather than the labels.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Illustration</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">A saguaro cactus silhouette and wavy ribbon motif ground the dashboard geographically without the need for a map. It's immediately legible as Phoenix, Arizona.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <strong style="color: var(--text-main);">Layout</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">Asymmetric two-column layout balances the data-dense scatter plot and bar chart against the calmer top-10 table and narrative text panels, preventing visual overload.</p>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Behind the Data -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Behind the Data</h2>
+
+            <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border); margin-bottom: 2rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 0.75rem;">Data Pipeline</h3>
+                <p>A Python script calls the Open-Meteo historical weather API to fetch every daily maximum temperature recorded at Phoenix Sky Harbor since January 1, 1940. For each year and each degree threshold (90°F–130°F), the script computes the longest consecutive streak of days at or above that temperature. The result is two clean CSVs — one of raw daily temps, one of annual streak data — ready for Tableau.</p>
+                <p style="margin-top: 1rem;">The script uses today's date as its end point automatically, so re-running it always produces a current dataset. A <code>--skip-fetch</code> flag skips the API call and recomputes streaks from the existing CSV, useful for testing without hitting rate limits.</p>
+            </div>
+
+            <!-- Code dropdown -->
+            <details style="background: rgba(255,255,255,0.5); border-radius: 14px; border: 1px solid var(--glass-border); margin-bottom: 3rem; overflow: hidden;">
+                <summary style="padding: 1.25rem 1.5rem; font-weight: 700; cursor: pointer; color: var(--text-main); font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    fetch_phx_temps.py — full source
+                    <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 400;">click to expand</span>
+                </summary>
+                <pre style="margin: 0; padding: 1.5rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; border-top: 1px solid var(--glass-border); background: rgba(255,255,255,0.3);"><code>"""
+Fetches daily max temperature data for Phoenix (Sky Harbor) from Open-Meteo
+and saves it as a CSV ready for Tableau. Also computes max consecutive streaks
+at various temperature thresholds for each year.
+
+Requirements: pip install requests
+Usage: python fetch_phoenix_temps.py
+       python fetch_phoenix_temps.py --skip-fetch   # reuse existing CSV
+"""
+
+import requests
+import csv
+import os
+import sys
+from datetime import datetime, date
+from collections import defaultdict
+
+LATITUDE = 33.4373
+LONGITUDE = -112.0078
+START_DATE = "1940-01-01"
+END_DATE = date.today().strftime("%Y-%m-%d")
+
+TEMP_CSV = "phoenix_daily_max_temp.csv"
+STREAK_CSV = "phoenix_max_streaks.csv"
+THRESHOLD_MIN = 90
+THRESHOLD_MAX = 130
+
+
+def fetch_and_save_temps():
+    url = "https://archive-api.open-meteo.com/v1/archive"
+    params = {
+        "latitude": LATITUDE,
+        "longitude": LONGITUDE,
+        "start_date": START_DATE,
+        "end_date": END_DATE,
+        "daily": "temperature_2m_max",
+        "temperature_unit": "fahrenheit",
+        "timezone": "America/Phoenix",
+    }
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    data = response.json()
+    dates = data["daily"]["time"]
+    temps = data["daily"]["temperature_2m_max"]
+    with open(TEMP_CSV, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["date", "year", "month", "day", "tmax_f"])
+        for d, temp in zip(dates, temps):
+            dt = datetime.strptime(d, "%Y-%m-%d")
+            writer.writerow([d, dt.year, dt.month, dt.day, temp])
+    return dates, temps
+
+
+def compute_streaks(dates, temps):
+    yearly = defaultdict(list)
+    for d, t in zip(dates, temps):
+        yearly[int(d[:4])].append((d, t))
+    for year in yearly:
+        yearly[year].sort(key=lambda x: x[0])
+    valid_temps = [t for t in temps if t is not None]
+    effective_max = min(THRESHOLD_MAX, int(max(valid_temps)) + 1)
+    results = []
+    for threshold in range(THRESHOLD_MIN, effective_max + 1):
+        for year in sorted(yearly.keys()):
+            max_streak = current_streak = 0
+            for d, tmax in yearly[year]:
+                if tmax is not None and tmax >= threshold:
+                    current_streak += 1
+                    max_streak = max(max_streak, current_streak)
+                else:
+                    current_streak = 0
+            results.append({"year": year, "threshold": threshold, "max_streak": max_streak})
+    return results
+
+
+def main():
+    skip_fetch = "--skip-fetch" in sys.argv
+    if skip_fetch and os.path.exists(TEMP_CSV):
+        dates, temps = [], []
+        with open(TEMP_CSV, "r") as f:
+            for row in csv.DictReader(f):
+                dates.append(row["date"])
+                val = row["tmax_f"]
+                temps.append(float(val) if val and val != "None" else None)
+    else:
+        dates, temps = fetch_and_save_temps()
+    results = compute_streaks(dates, temps)
+    with open(STREAK_CSV, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["year", "threshold", "max_streak"])
+        writer.writeheader()
+        writer.writerows(results)
+
+
+if __name__ == "__main__":
+    main()</code></pre>
+            </details>
+
+            <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 3rem 0;">
+
+            <!-- Data Sources -->
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Data Sources</h2>
+
+            <div style="background: rgba(255,255,255,0.5); padding: 2rem; border-radius: 14px; border: 1px solid var(--glass-border); margin-bottom: 2rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Open-Meteo Historical Weather API</h3>
+                <p><strong>Source:</strong> <a href="https://open-meteo.com/" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">Open-Meteo.com</a></p>
+                <p style="margin-top: 0.75rem;"><strong>Station:</strong> Phoenix Sky Harbor International Airport (33.4373°N, 112.0078°W)</p>
+                <p style="margin-top: 0.75rem;"><strong>Variable:</strong> Daily maximum temperature (°F), 2m height</p>
+                <p style="margin-top: 0.75rem;"><strong>Coverage:</strong> January 1, 1940 – present (auto-updates on each run)</p>
+                <p style="margin-top: 0.75rem;"><strong>Timezone:</strong> America/Phoenix (no daylight saving)</p>
+            </div>
+
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Lasting Wake. All rights reserved.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
