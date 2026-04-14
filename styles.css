@@ -255,9 +255,9 @@ h1 {
 
 @media (max-width: 768px) {
     .gallery-container {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 220px;
-        gap: 2rem;
+        grid-template-columns: 1fr;
+        grid-auto-rows: 260px;
+        gap: 1.5rem;
         padding-top: 1.5rem;
     }
     .gallery-item {
@@ -270,7 +270,7 @@ h1 {
         z-index: 10;
     }
     .gallery-item.featured {
-        grid-column: span 2;
+        grid-column: span 1;
         grid-row: span 1;
     }
 }
@@ -1040,15 +1040,17 @@ body:has(.about-drawer.open) .connected-earth-link {
         right: 1rem;
     }
 
-    /* Gallery */
-    .gallery-container {
-        gap: 2rem;
-        padding-top: 3rem;
+    /* Connected Earth — icon only on mobile */
+    .connected-earth-link {
+        font-size: 0;
+        width: 60px;
+        padding: 0;
+        justify-content: center;
+        right: 7rem;
     }
-
-    .gallery-item {
-        width: min(300px, 85vw);
-        height: 420px;
+    .connected-earth-link img {
+        height: 36px;
+        width: 36px;
     }
 
     /* Interior pages */
