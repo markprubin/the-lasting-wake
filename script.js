@@ -85,23 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalSkills = document.getElementById('modal-skills');
     const closeModalBtn = document.getElementById('close-modal');
 
-    // Generate Gallery Items with Scattering effect
+    // Generate Gallery Items — Bento Grid with floating animation
+    const floatDurations = [4.2, 3.8, 5.1, 4.6, 3.5, 4.9];
+    const floatDelays    = [0, -1.4, -2.8, -0.7, -3.5, -1.9];
+
     if (galleryContainer) {
         projects.forEach((project, index) => {
             const item = document.createElement('div');
             item.classList.add('gallery-item');
 
-            // Organic scattering logic
-            // Random Y offset between -40px and 60px
-            const offsetY = Math.floor(Math.random() * 100) - 40;
-            // Random slight rotation between -3deg and 3deg
-            const rotate = (Math.random() * 6 - 3).toFixed(1);
+            if (index === 0) item.classList.add('featured');
 
-            item.style.setProperty('--offsetY', `${offsetY}px`);
-            item.style.setProperty('--rotate', `${rotate}deg`);
-
-            // Provide staggered entry animation delay if desired
-            item.style.animationDelay = `${index * 0.1}s`;
+            item.style.setProperty('--float-duration', `${floatDurations[index] || 4}s`);
+            item.style.setProperty('--float-delay',    `${floatDelays[index] || 0}s`);
 
             item.innerHTML = `
                 <div class="gallery-image-wrapper">
@@ -113,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // Click Event to Open Modal
             item.addEventListener('click', () => {
                 openModal(project);
             });
