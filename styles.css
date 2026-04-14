@@ -257,12 +257,17 @@ h1 {
     .gallery-container {
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: 220px;
-        gap: 1.25rem;
-        overflow: hidden;
+        gap: 2rem;
+        padding-top: 1.5rem;
     }
     .gallery-item {
         animation: none !important;
         transform: none !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+    .gallery-item:active {
+        transform: scale(0.97) !important;
+        z-index: 10;
     }
     .gallery-item.featured {
         grid-column: span 2;
