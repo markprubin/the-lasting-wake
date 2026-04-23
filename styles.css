@@ -196,6 +196,7 @@ h1 {
     cursor: pointer;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     animation: float var(--float-duration, 4s) ease-in-out var(--float-delay, 0s) infinite;
@@ -297,6 +298,7 @@ h1 {
     width: 100vw;
     height: 100vh;
     background: rgba(251, 247, 240, 0.6);
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     border: none;
     display: flex;
@@ -524,6 +526,7 @@ h1 {
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.65);
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     color: #fff;
     font-size: 0.75rem;
@@ -694,6 +697,7 @@ footer {
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.55);
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     color: #fff;
     font-size: 0.9rem;
@@ -763,6 +767,7 @@ footer {
     text-decoration: none;
     letter-spacing: -0.5px;
     background: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     padding: 0.6rem 1.2rem;
     border-radius: 30px;
@@ -796,6 +801,7 @@ footer {
     z-index: 1000;
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 50%;
     width: 60px;
@@ -829,6 +835,7 @@ footer {
     max-width: 450px;
     height: 100vh;
     background: rgba(251, 247, 240, 0.95);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border-left: 1px solid var(--glass-border);
     z-index: 999;
@@ -894,6 +901,7 @@ footer {
     text-decoration: none;
     letter-spacing: 0.03em;
     background: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     padding: 0 1.1rem;
     height: 60px;
@@ -920,6 +928,10 @@ footer {
 
 body:has(.about-drawer.open) .connected-earth-link {
     transform: translateX(-460px);
+}
+
+body:has(.modal.active) .connected-earth-link {
+    display: none;
 }
 
 /* ================================
@@ -1000,6 +1012,13 @@ body:has(.about-drawer.open) .connected-earth-link {
         margin-bottom: 1rem;
     }
 
+    .modal-stationary-sidebar .btn-secondary {
+        background: linear-gradient(90deg, #ff8c69, #ffcc5c);
+        color: #fff;
+        transform: translateZ(0);
+        isolation: isolate;
+    }
+
     .modal-scrollable-content h2 {
         font-size: 1.6rem;
         margin-bottom: 0.75rem;
@@ -1032,7 +1051,8 @@ body:has(.about-drawer.open) .connected-earth-link {
 
     /* Hide nav when modal open on mobile */
     body:has(.modal.active) .home-link,
-    body:has(.modal.active) .menu-toggle {
+    body:has(.modal.active) .menu-toggle,
+    body:has(.modal.active) .connected-earth-link {
         display: none;
     }
 
