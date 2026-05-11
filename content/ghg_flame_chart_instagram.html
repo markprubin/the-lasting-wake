@@ -496,6 +496,21 @@ gases.forEach((gas, i) => {
   slideCounter(ctx, 6);
 }
 
+  function scaleSlides() {
+    const scale = Math.min(1, (window.innerWidth - 16) / 1080);
+    document.querySelectorAll('.slide-wrap').forEach(wrap => {
+      wrap.style.transform = `scale(${scale})`;
+      wrap.style.transformOrigin = 'top center';
+      // canvas 1080px + label ~28px
+      const naturalH = 1108;
+      const margin = -(naturalH * (1 - scale)) / 2;
+      wrap.style.marginTop = margin + 'px';
+      wrap.style.marginBottom = margin + 'px';
+    });
+  }
+  scaleSlides();
+  window.addEventListener('resize', scaleSlides);
+
 }); // end document.fonts.ready
 </script>
 </body>

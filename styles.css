@@ -1065,6 +1065,11 @@ body:has(.modal.active) .connected-earth-link {
         isolation: isolate;
     }
 
+    .modal-stationary-sidebar .btn-instagram {
+        transform: translateZ(0);
+        isolation: isolate;
+    }
+
     .modal-scrollable-content h2 {
         font-size: 1.6rem;
         margin-bottom: 0.75rem;

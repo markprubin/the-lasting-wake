@@ -392,6 +392,18 @@ ctx.textAlign = 'left';
 ctx.fillText('Data: IPCC AR6 WG1 (2021), Table 7.15. GWP₂₀ = warming impact of 1 tonne over 20 years, relative to CO₂.', leftPad, H - 35);
 ctx.fillText('CO₂ removal follows IPCC multi-phase model. thelastingwake.com', leftPad, H - 17);
 
+function scaleChart() {
+  const wrap = document.getElementById('canvas-wrap');
+  const scale = Math.min(1, window.innerWidth / 1080);
+  wrap.style.transform = `scale(${scale})`;
+  wrap.style.transformOrigin = 'top center';
+  const scaledH = 1080 * scale;
+  document.body.style.height = scaledH + 'px';
+  document.body.style.overflow = scaledH < 1080 ? 'hidden' : '';
+}
+scaleChart();
+window.addEventListener('resize', scaleChart);
+
 </script>
 </body>
 </html>
