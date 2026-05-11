@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: "content/images/ghgflamechart-card.png",
             modalImage: "content/images/ghgflamechart-modal.png",
             deeperDiveUrl: "content/ghg_flame_chart.html",
+            instagramUrl: "content/ghg_flame_chart_instagram.html",
             description: "<p>Not all greenhouse gases are created equal — and this visualization makes that impossible to ignore. Four gases, four flames, one chart: height represents warming power per molecule, length represents how long the gas persists in the atmosphere.</p><p>Methane burns bright and short — 83 times more potent than CO₂ over 20 years, but gone within a decade. SF₆ barely registers in the emissions ledger but lingers for 3,200 years, its flame stretching almost to the edge of the chart. Nitrous oxide sits between them, persistent and punishing. And CO₂, the baseline, draws a long shallow tail that never fully disappears — a permanent fraction locked into the atmosphere for millennia.</p><p>Rendered entirely in canvas with a log-scaled time axis spanning 1 to 10,000 years, the chart uses glowing, decay-weighted flames to turn IPCC atmospheric chemistry into something you can feel at a glance.</p>",
             software: [
                 { name: "JavaScript", src: "https://cdn.simpleicons.org/javascript/F7DF1E" }
@@ -95,15 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     const deeperDiveLink = document.getElementById('deeper-dive-link');
+    const instagramLink = document.getElementById('instagram-link');
     const modalSkills = document.getElementById('modal-skills');
     const closeModalBtn = document.getElementById('close-modal');
 
     // Generate Gallery Items — Bento Grid with floating animation
     if (galleryContainer) {
         projects.forEach((project) => {
+            const wrap = document.createElement('div');
+            wrap.classList.add('gallery-item-wrap');
+
             const item = document.createElement('div');
             item.classList.add('gallery-item');
-
             item.innerHTML = `
                 <div class="gallery-image-wrapper">
                     <img src="${project.image}" alt="${project.title}" loading="lazy">
@@ -114,11 +118,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
+            if (project.instagramUrl) {
+                const badge = document.createElement('div');
+                badge.className = 'card-badge';
+                badge.textContent = 'Includes Social Media Adaptation';
+                wrap.appendChild(badge);
+            }
+
             item.addEventListener('click', () => {
                 openModal(project);
             });
 
-            galleryContainer.appendChild(item);
+            wrap.appendChild(item);
+            galleryContainer.appendChild(wrap);
         });
     }
 
@@ -127,6 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
         modalImage.src = project.modalImage || project.image;
         modalTitle.textContent = project.title;
         if (deeperDiveLink) deeperDiveLink.href = project.deeperDiveUrl || `content/project-${project.id}.html`;
+        if (instagramLink) {
+            if (project.instagramUrl) {
+                instagramLink.href = project.instagramUrl;
+                instagramLink.style.display = '';
+            } else {
+                instagramLink.style.display = 'none';
+            }
+        }
 
         modalDescription.innerHTML = project.description || '<p>No detailed description available.</p>';
 

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHG Flame Chart — Instagram Carousel</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #06070b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 40px 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .slide-wrap { position: relative; }
+  .slide-label {
+    color: rgba(255,255,255,0.2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 0 6px;
+    text-align: center;
+  }
+  canvas {
+    display: block;
+    width: 1080px;
+    height: 1080px;
+  }
+</style>
+</head>
+<body>
+<script>
+const BG   = '#0e1117';
+const DPR  = 2;
+const W    = 1080;
+const H    = 1080;
+const TOTAL_SLIDES = 6;
+
+const gases = [
+  {
+    name: 'Methane', formula: 'CH₄',
+    gwp: 83, gwpLabel: '83×',
+    color: [239, 159, 39], decayRate: 12,
+    lifetime: '~12 year lifetime',
+    emissionsShare: '19% of emissions',
+    warmingShare: '~30% of current warming',
+    hook: 'The most urgent gas we can actually fix — fast.',
+    annotation: { yr: 12, text: '63% gone after just 12 years' }
+  },
+  {
+    name: 'Nitrous Oxide', formula: 'N₂O',
+    gwp: 273, gwpLabel: '273×',
+    color: [216, 90, 48], decayRate: 109,
+    lifetime: '~109 year lifetime',
+    emissionsShare: '5% of emissions',
+    warmingShare: '~7% of current warming',
+    hook: "Agriculture's hidden climate cost.",
+    annotation: { yr: 109, text: '63% gone after 109 years' }
+  },
+  {
+    name: 'Sulfur Hexafluoride', formula: 'SF₆',
+    gwp: 16300, gwpLabel: '16,300×',
+    color: [212, 83, 126], decayRate: 3200,
+    lifetime: '~3,200 year lifetime',
+    emissionsShare: '<0.1% of emissions',
+    warmingShare: '<0.1% of current warming',
+    hook: 'The most alarming and potent gas you’ve never heard of.',
+    annotation: { yr: 3200, text: 'Still 37% here after 3,200 years' }
+  },
+  {
+    name: 'Carbon Dioxide', formula: 'CO₂',
+    gwp: 1, gwpLabel: '1× (baseline)',
+    color: [74, 144, 217], decayRate: -1,
+    lifetime: 'Partially permanent',
+    emissionsShare: '74% of emissions',
+    warmingShare: '~53% of current warming',
+    hook: '20% of every tonne emitted stays forever.',
+    annotation: { yr: 5000, text: '~20% still here after 5,000 years' }
+  }
+];
+
+function decay(gas, t) {
+  if (gas.decayRate === -1) {
+    return 0.45 * Math.exp(-t / 25) +
+           0.30 * Math.exp(-t / 200) +
+           0.05 * Math.exp(-t / 3000) +
+           0.20;
+  }
+  return Math.exp(-t / gas.decayRate);
+}
+
+function timeToX(yr, lp, plotW) {
+  if (yr <= 1) return lp;
+  return lp + (Math.log10(yr) / 4) * plotW;
+}
+
+function makeCanvas(label) {
+  const wrap = document.createElement('div');
+  wrap.className = 'slide-wrap';
+  const lbl = document.createElement('div');
+  lbl.className = 'slide-label';
+  lbl.textContent = label;
+  wrap.appendChild(lbl);
+  const c = document.createElement('canvas');
+  c.width  = W * DPR;
+  c.height = H * DPR;
+  c.style.width  = W + 'px';
+  c.style.height = H + 'px';
+  wrap.appendChild(c);
+  document.body.appendChild(wrap);
+  const ctx = c.getContext('2d');
+  ctx.scale(DPR, DPR);
+  return ctx;
+}
+
+function fillBg(ctx) {
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function branding(ctx) {
+  ctx.font = '300 12px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.22)';
+  ctx.textAlign = 'center';
+  ctx.fillText('Data: IPCC AR6 WG1 (2021), Table 7.15  ·  thelastingwake.com', W / 2, H - 22);
+}
+
+function slideCounter(ctx, n) {
+  const r = 3.5, gap = 12, total = TOTAL_SLIDES;
+  const totalW = total * r * 2 + (total - 1) * (gap - r * 2);
+  let x = W / 2 - totalW / 2 + r;
+  const y = H - 44;
+  for (let i = 0; i < total; i++) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = i === n - 1 ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.18)';
+    ctx.fill();
+    x += gap;
+  }
+}
+
+function drawGridLines(ctx, lp, plotW, yTop, yBot) {
+  [1, 10, 100, 1000, 10000].forEach(yr => {
+    const x = timeToX(yr, lp, plotW);
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, yTop);
+    ctx.lineTo(x, yBot);
+    ctx.stroke();
+  });
+}
+
+function drawXAxisLabels(ctx, lp, plotW, y) {
+  const labels = { 1: '1 yr', 10: '10', 100: '100', 1000: '1k', 10000: '10k yrs' };
+  ctx.font = '300 13px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.textAlign = 'center';
+  Object.entries(labels).forEach(([yr, lbl]) => {
+    ctx.fillText(lbl, timeToX(+yr, lp, plotW), y);
+  });
+}
+
+function drawFlame(ctx, gas, lp, plotW, flameTop, flameH, steps = 380) {
+  const baseY = flameTop + flameH;
+  const maxH  = flameH * 0.92;
+  const [r, g, b] = gas.color;
+
+  for (let s = 0; s < steps; s++) {
+    const t0 = s / steps;
+    const t1 = (s + 1) / steps;
+    const yr  = Math.pow(10, t0 * 4);
+    const d   = decay(gas, yr);
+    const x   = lp + t0 * plotW;
+    const sw  = (t1 - t0) * plotW + 0.5;
+    const h   = maxH * Math.max(d, 0.012);
+    const iv  = Math.max(d, 0.012);
+
+    // outer glow
+    const oa = 0.42 * Math.pow(iv, 0.65);
+    const og = ctx.createLinearGradient(x, baseY, x, baseY - h);
+    og.addColorStop(0,   `rgba(${r},${g},${b},0)`);
+    og.addColorStop(0.15,`rgba(${r},${g},${b},${oa * 0.45})`);
+    og.addColorStop(0.55,`rgba(${r},${g},${b},${oa})`);
+    og.addColorStop(1,   `rgba(${r},${g},${b},${oa * 0.15})`);
+    ctx.fillStyle = og;
+    ctx.fillRect(x, baseY - h, sw, h);
+
+    // core
+    const ca = 0.95 * Math.pow(iv, 0.5);
+    const ch = h * 0.46;
+    const cg = ctx.createLinearGradient(x, baseY, x, baseY - ch);
+    cg.addColorStop(0,  `rgba(${r},${g},${b},0)`);
+    cg.addColorStop(0.3,`rgba(${Math.min(r+30,255)},${Math.min(g+30,255)},${Math.min(b+30,255)},${ca * 0.55})`);
+    cg.addColorStop(0.7,`rgba(${Math.min(r+55,255)},${Math.min(g+55,255)},${Math.min(b+55,255)},${ca})`);
+    cg.addColorStop(1,  `rgba(${Math.min(r+70,255)},${Math.min(g+70,255)},${Math.min(b+70,255)},${ca * 0.75})`);
+    ctx.fillStyle = cg;
+    ctx.fillRect(x, baseY - ch, sw, ch);
+
+    // white-hot tip
+    if (iv > 0.38) {
+      const wa = 0.38 * Math.pow((iv - 0.38) / 0.62, 0.7);
+      const wh = h * 0.11;
+      const wg = ctx.createLinearGradient(x, baseY, x, baseY - wh);
+      wg.addColorStop(0,   `rgba(255,255,255,0)`);
+      wg.addColorStop(0.45,`rgba(255,255,255,${wa})`);
+      wg.addColorStop(1,   `rgba(255,255,255,0)`);
+      ctx.fillStyle = wg;
+      ctx.fillRect(x, baseY - wh, sw, wh);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// SLIDE 1 — COVER
+// ─────────────────────────────────────────────
+document.fonts.ready.then(() => {
+
+{
+  const ctx = makeCanvas('Slide 1 of 6 — Cover');
+  fillBg(ctx);
+
+  const lp = 60, plotW = W - 120;
+  const rowH = 82, rowGap = 6;
+  const flameTop = 560;
+
+  // all 4 flames stacked
+  gases.forEach((gas, i) => {
+    const rTop  = flameTop + i * (rowH + rowGap);
+    const baseY = rTop + rowH;
+    drawFlame(ctx, gas, lp, plotW, rTop, rowH, 260);
+
+    // baseline
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(lp, baseY);
+    ctx.lineTo(lp + plotW, baseY);
+    ctx.stroke();
+
+    // formula + name label
+    const [r, g, b] = gas.color;
+    ctx.font = '600 14px "DM Sans", sans-serif';
+    ctx.fillStyle = `rgba(${r},${g},${b},0.85)`;
+    ctx.textAlign = 'left';
+    ctx.fillText(gas.formula, lp + 8, rTop + 16);
+    ctx.font = '300 13px "DM Sans", sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.45)';
+    ctx.fillText(gas.name, lp + 8 + ctx.measureText(gas.formula).width + 10, rTop + 16);
+  });
+
+  drawGridLines(ctx, lp, plotW, flameTop, flameTop + 4 * rowH + 3 * rowGap);
+  drawXAxisLabels(ctx, lp, plotW, flameTop + 4 * rowH + 3 * rowGap + 22);
+
+  // title
+  ctx.font = '70px "DM Serif Display", serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.96)';
+  ctx.textAlign = 'center';
+  ctx.fillText('Not All Greenhouse', W / 2, 155);
+  ctx.fillText('Gases Are Equal', W / 2, 235);
+
+  ctx.font = '300 28px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.45)';
+  ctx.fillText('Some hit hard. Some never leave. Some do both.', W / 2, 302);
+
+  // swipe nudge
+  ctx.font = '500 18px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.28)';
+  ctx.textAlign = 'center';
+  ctx.fillText('Swipe to explore each gas →', W / 2, 490);
+
+  branding(ctx);
+  slideCounter(ctx, 1);
+}
+
+// ─────────────────────────────────────────────
+// SLIDES 2–5 — One gas each
+// ─────────────────────────────────────────────
+gases.forEach((gas, i) => {
+  const ctx = makeCanvas(`Slide ${i + 2} of 6 — ${gas.formula}`);
+  fillBg(ctx);
+
+  const [r, g, b] = gas.color;
+  const hex = `rgb(${r},${g},${b})`;
+
+  // radial glow behind text
+  const glow = ctx.createRadialGradient(W / 2, 260, 0, W / 2, 260, 420);
+  glow.addColorStop(0, `rgba(${r},${g},${b},0.07)`);
+  glow.addColorStop(1, `rgba(${r},${g},${b},0)`);
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, 520);
+
+  // formula
+  ctx.font = '700 96px “DM Sans”, sans-serif';
+  ctx.fillStyle = hex;
+  ctx.textAlign = 'center';
+  ctx.fillText(gas.formula, W / 2, 112);
+
+  // full name — pushed well below formula descenders/subscripts
+  ctx.font = '300 26px “DM Sans”, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.45)';
+  ctx.fillText(gas.name, W / 2, 178);
+
+  // divider
+  ctx.strokeStyle = `rgba(${r},${g},${b},0.2)`;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(W / 2 - 180, 202);
+  ctx.lineTo(W / 2 + 180, 202);
+  ctx.stroke();
+
+  // GWP number
+  const gwpStr = gas.gwp === 1 ? '1×' : gas.gwp.toLocaleString() + '×';
+  ctx.font = '700 112px “DM Sans”, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.95)';
+  ctx.textAlign = 'center';
+  ctx.fillText(gwpStr, W / 2, 326);
+
+  ctx.font = '300 19px “DM Sans”, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fillText('warming power vs. CO₂ over 20 years', W / 2, 366);
+
+  // lifetime pill
+  const pillTxt = gas.lifetime;
+  const pillW   = ctx.measureText(pillTxt).width + 56;
+  const pillH   = 40;
+  const pillX   = W / 2 - pillW / 2;
+  const pillY   = 392;
+  ctx.beginPath();
+  ctx.roundRect(pillX, pillY, pillW, pillH, 20);
+  ctx.fillStyle = `rgba(${r},${g},${b},0.12)`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(${r},${g},${b},0.45)`;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  ctx.font = '500 16px “DM Sans”, sans-serif';
+  ctx.fillStyle = hex;
+  ctx.textAlign = 'center';
+  ctx.fillText(pillTxt, W / 2, pillY + 26);
+
+  // hook
+  ctx.font = 'italic 300 21px “DM Sans”, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.fillText('”' + gas.hook + '”', W / 2, 466);
+
+  // flame
+  const lp       = 70;
+  const plotW    = W - 140;
+  const flameTop = 504;
+  const flameH   = 446;
+  const baseY    = flameTop + flameH;
+
+  drawGridLines(ctx, lp, plotW, flameTop, baseY);
+  drawFlame(ctx, gas, lp, plotW, flameTop, flameH);
+
+  // baseline
+  ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(lp, baseY);
+  ctx.lineTo(lp + plotW, baseY);
+  ctx.stroke();
+
+  // annotation
+  const ann     = gas.annotation;
+  const annX    = timeToX(ann.yr, lp, plotW);
+  const annDecay = decay(gas, ann.yr);
+  const annFlH  = flameH * 0.92 * Math.max(annDecay, 0.012);
+  const annTipY = baseY - annFlH - 8;
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 0.75;
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(annX, annTipY);
+  ctx.lineTo(annX, annTipY - 36);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.font = '400 13px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.55)';
+  ctx.textAlign = 'center';
+  const annLabelX = annX + (annX > W - 220 ? -70 : 80);
+  ctx.fillText(ann.text, annLabelX, annTipY - 44);
+
+  // x-axis labels
+  drawXAxisLabels(ctx, lp, plotW, baseY + 24);
+
+  ctx.font = '300 12px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.28)';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${gas.emissionsShare}  ·  ${gas.warmingShare}`, W / 2, baseY + 46);
+
+  branding(ctx);
+  slideCounter(ctx, i + 2);
+});
+
+// ─────────────────────────────────────────────
+// SLIDE 6 — TAKEAWAY
+// ─────────────────────────────────────────────
+{
+  const ctx = makeCanvas('Slide 6 of 6 — Takeaway');
+  fillBg(ctx);
+
+  // title
+  ctx.font = '52px "DM Serif Display", serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.96)';
+  ctx.textAlign = 'center';
+  ctx.fillText('The Takeaway', W / 2, 96);
+
+  ctx.font = '300 21px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.38)';
+  ctx.fillText('Not all emissions are created equal.', W / 2, 140);
+
+  // divider
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(60, 162);
+  ctx.lineTo(W - 60, 162);
+  ctx.stroke();
+
+  // cards
+  const cards = [
+    { gas: gases[0], badge: 'MOST URGENT',   blurb: 'Cut it now. Climate response within a decade.' },
+    { gas: gases[1], badge: 'AGRICULTURAL',  blurb: 'Fertilizer & livestock. Sticks for a century.' },
+    { gas: gases[2], badge: 'MOST ALARMING', blurb: 'Tiny amounts. Multi-millennium commitment.' },
+    { gas: gases[3], badge: 'ACCUMULATED',   blurb: '20% of every tonne emitted is permanently ours.' },
+  ];
+
+  const cx    = 54;
+  const cw    = W - 108;
+  const ch    = 163;
+  const gap   = 14;
+  const startY = 182;
+
+  cards.forEach((item, i) => {
+    const [r, g, b] = item.gas.color;
+    const cy = startY + i * (ch + gap);
+
+    // card bg
+    ctx.beginPath();
+    ctx.roundRect(cx, cy, cw, ch, 10);
+    ctx.fillStyle = `rgba(${r},${g},${b},0.07)`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(${r},${g},${b},0.22)`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // left color strip
+    ctx.beginPath();
+    ctx.roundRect(cx, cy, 4, ch, [10, 0, 0, 10]);
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fill();
+
+    // formula
+    ctx.font = '700 38px "DM Sans", sans-serif';
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.textAlign = 'left';
+    ctx.fillText(item.gas.formula, cx + 24, cy + 50);
+
+    // badge
+    ctx.font = '600 11px "DM Sans", sans-serif';
+    ctx.fillStyle = `rgba(${r},${g},${b},0.7)`;
+    ctx.letterSpacing = '0.08em';
+    ctx.fillText(item.badge, cx + 24, cy + 84);
+
+    // blurb
+    ctx.font = '300 17px "DM Sans", sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.55)';
+    ctx.fillText(item.blurb, cx + 24, cy + 120);
+
+    // GWP right
+    ctx.font = '700 28px "DM Sans", sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.88)';
+    ctx.textAlign = 'right';
+    const gwpStr = item.gas.gwp === 1 ? '1×' : item.gas.gwp.toLocaleString() + '×';
+    ctx.fillText(gwpStr, cx + cw - 20, cy + 50);
+
+    ctx.font = '300 12px "DM Sans", sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.28)';
+    ctx.fillText('GWP₂₀', cx + cw - 20, cy + 80);
+
+    // lifetime
+    ctx.font = '300 13px "DM Sans", sans-serif';
+    ctx.fillStyle = `rgba(${r},${g},${b},0.7)`;
+    ctx.fillText(item.gas.lifetime, cx + cw - 20, cy + 120);
+  });
+
+  branding(ctx);
+  slideCounter(ctx, 6);
+}
+
+}); // end document.fonts.ready
+</script>
+</body>
+</html>

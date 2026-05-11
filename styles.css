@@ -186,6 +186,7 @@ h1 {
     grid-auto-rows: 340px;
     gap: 1.5rem;
     padding-top: 3rem;
+    overflow: visible;
 }
 
 /* Bento Gallery Item */
@@ -202,15 +203,18 @@ h1 {
     transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
 
-.gallery-item:hover {
+.gallery-item-wrap:hover .gallery-item {
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
-    transform: translateY(-8px) scale(1.02);
     animation-play-state: paused;
+}
+
+.gallery-item-wrap:hover {
+    transform: translateY(-8px) scale(1.02);
     z-index: 10;
 }
 
 /* Featured tile: spans 2 columns and 2 rows */
-.gallery-item.featured {
+.gallery-item-wrap.featured {
     grid-column: span 2;
     grid-row: span 2;
 }
@@ -262,11 +266,11 @@ h1 {
         transform: none !important;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     }
-    .gallery-item:active {
+    .gallery-item-wrap:active {
         transform: scale(0.97) !important;
         z-index: 10;
     }
-    .gallery-item.featured {
+    .gallery-item-wrap.featured {
         grid-column: span 1;
         grid-row: span 1;
     }
@@ -285,6 +289,36 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 800;
+}
+
+.gallery-item-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease, z-index 0s;
+}
+
+.gallery-item-wrap .gallery-item {
+    flex: 1;
+    min-height: 0;
+}
+
+.card-badge {
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    transform: translateY(-100%);
+    background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px 6px 0 0;
+    pointer-events: none;
+    z-index: 2;
+    white-space: nowrap;
 }
 
 /* Modal */
@@ -477,6 +511,22 @@ h1 {
     color: #fff;
     border-color: transparent;
     box-shadow: 0 10px 20px rgba(255, 140, 105, 0.4);
+}
+
+.btn-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 10px rgba(220, 39, 67, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-instagram:hover {
+    box-shadow: 0 10px 20px rgba(220, 39, 67, 0.45);
+    color: #fff;
+    border-color: transparent;
 }
 
 /* Modal Skills Integration */
