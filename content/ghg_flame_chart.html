@@ -31,17 +31,6 @@
     height: 100%;
   }
 
-  @media (max-width: 1080px) {
-    body {
-      align-items: flex-start;
-      justify-content: flex-start;
-      min-height: unset;
-    }
-    #canvas-wrap {
-      width: 100vw;
-      height: 100vw;
-    }
-  }
 </style>
 </head>
 <body>
@@ -56,8 +45,12 @@ const W = 1080;
 const H = 1080;
 canvas.width = W * dpr;
 canvas.height = H * dpr;
-canvas.style.width = W + 'px';
-canvas.style.height = H + 'px';
+const displaySize = Math.min(W, window.innerWidth);
+canvas.style.width = displaySize + 'px';
+canvas.style.height = displaySize + 'px';
+const wrap = document.getElementById('canvas-wrap');
+wrap.style.width = displaySize + 'px';
+wrap.style.height = displaySize + 'px';
 
 const ctx = canvas.getContext('2d');
 ctx.scale(dpr, dpr);
