@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Short-Lived but Brutal — GHG Flame Chart</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0e1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  #canvas-wrap {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    background: #0e1117;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+<div id="canvas-wrap">
+  <canvas id="flameChart" width="2160" height="2160"></canvas>
+</div>
+
+<script>
+const canvas = document.getElementById('flameChart');
+const dpr = 2;
+const W = 1080;
+const H = 1080;
+canvas.width = W * dpr;
+canvas.height = H * dpr;
+canvas.style.width = W + 'px';
+canvas.style.height = H + 'px';
+
+const ctx = canvas.getContext('2d');
+ctx.scale(dpr, dpr);
+
+// Layout
+const topPad = 200;
+const bottomPad = 105;
+const leftPad = 90;
+const rightPad = 50;
+const rowGap = 20;
+const rows = 4;
+const plotW = W - leftPad - rightPad;
+const totalRowSpace = H - topPad - bottomPad;
+const rowH = (totalRowSpace - rowGap * (rows - 1)) / rows;
+
+// Colors
+const bg = '#0e1117';
+const textMain = 'rgba(255,255,255,0.9)';
+const textMuted = 'rgba(255,255,255,0.4)';
+const textDim = 'rgba(255,255,255,0.25)';
+const gridLine = 'rgba(255,255,255,0.06)';
+
+// Background
+ctx.fillStyle = bg;
+ctx.fillRect(0, 0, W, H);
+
+// Title
+ctx.font = '32px "DM Serif Display", serif';
+ctx.fillStyle = 'rgba(255,255,255,0.95)';
+ctx.textAlign = 'left';
+ctx.fillText('Short-Lived but Brutal', leftPad, 55);
+
+ctx.font = '300 15px "DM Sans", sans-serif';
+ctx.fillStyle = 'rgba(255,255,255,0.5)';
+ctx.fillText('How long greenhouse gases persist — and how hard they hit.', leftPad, 85);
+ctx.fillText('Height = warming power per molecule. Length = how long it lasts.', leftPad, 107);
+
+// Gas data
+const gases = [
+  {
+    name: 'Methane (CH₄)',
+    gwp: 83,
+    gwpLabel: 'GWP₂₀: 83×',
+    lifetime: '~12 yr lifetime',
+    emissionsShare: '19% of emissions',
+    warmingShare: '~30% of current warming',
+    color: [239, 159, 39], // #EF9F27
+    decayRate: 12,
+  },
+  {
+    name: 'Nitrous Oxide (N₂O)',
+    gwp: 273,
+    gwpLabel: 'GWP₂₀: 273×',
+    lifetime: '~109 yr lifetime',
+    emissionsShare: '5% of emissions',
+    warmingShare: '~7% of current warming',
+    color: [216, 90, 48], // #D85A30
+    decayRate: 109,
+  },
+  {
+    name: 'SF₆',
+    gwp: 16300,
+    gwpLabel: 'GWP₂₀: 16,300×',
+    lifetime: '~3,200 yr lifetime',
+    emissionsShare: '<0.1% of emissions',
+    warmingShare: '<0.1% of current warming',
+    color: [212, 83, 126], // #D4537E
+    decayRate: 3200,
+  },
+  {
+    name: 'Carbon Dioxide (CO₂)',
+    gwp: 1,
+    gwpLabel: 'GWP₂₀: 1× (baseline)',
+    lifetime: 'Long tail: millennia',
+    emissionsShare: '74% of emissions',
+    warmingShare: '~53% of current warming',
+    color: [74, 144, 217], // #4A90D9
+    decayRate: -1, // special multi-phase
+  },
+];
+
+// Log scale helper: maps years (1 to 10000) to pixel x
+function timeToX(years) {
+  if (years <= 1) return leftPad;
+  const logVal = Math.log10(years);
+  const maxLog = Math.log10(10000);
+  return leftPad + (logVal / maxLog) * plotW;
+}
+
+// Vertical grid lines
+const xTicks = [1, 10, 100, 1000, 10000];
+ctx.strokeStyle = gridLine;
+ctx.lineWidth = 0.5;
+
+xTicks.forEach(yr => {
+  const x = timeToX(yr);
+  ctx.beginPath();
+  ctx.moveTo(x, topPad - 10);
+  ctx.lineTo(x, H - bottomPad + 10);
+  ctx.stroke();
+});
+
+// Decay function
+function getDecay(gas, t) {
+  if (gas.decayRate === -1) {
+    // CO2 multi-phase IPCC
+    const fast = 0.45 * Math.exp(-t / 25);
+    const medium = 0.30 * Math.exp(-t / 200);
+    const slow = 0.05 * Math.exp(-t / 3000);
+    const permanent = 0.20;
+    return fast + medium + slow + permanent;
+  }
+  return Math.exp(-t / gas.decayRate);
+}
+
+// Normalized GWP for flame height (log scale so SF6 doesn't dominate completely)
+function gwpToHeight(gwp) {
+  return Math.log10(gwp + 1) / Math.log10(16301);
+}
+
+// Draw each gas row
+gases.forEach((gas, i) => {
+  const rowTop = topPad + i * (rowH + rowGap);
+  const labelZone = 55; // reserved space for name + gwp + share labels
+  const baseY = rowTop + rowH;
+  const maxFlameH = rowH - labelZone - 5;
+
+  // Horizontal baseline for this row
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(leftPad, baseY);
+  ctx.lineTo(leftPad + plotW, baseY);
+  ctx.stroke();
+
+  // Flame intensity based on GWP (normalized via log)
+  const normalizedGWP = gwpToHeight(gas.gwp);
+  const flameHeight = 20 + normalizedGWP * (maxFlameH - 20);
+
+  // Draw flame segments
+  const steps = 300;
+  for (let s = 0; s < steps; s++) {
+    const t01 = s / steps;
+    const nextT01 = (s + 1) / steps;
+
+    // Map t01 to years via log scale (1 to 10000)
+    const years = Math.pow(10, t01 * 4);
+    const decay = getDecay(gas, years);
+
+    const x = leftPad + t01 * plotW;
+    const nextX = leftPad + nextT01 * plotW;
+    const segW = nextX - x;
+
+    const h = flameHeight * Math.max(decay, 0.015);
+    const intensity = Math.max(decay, 0.015);
+
+    const [r, g, b] = gas.color;
+
+    // Core glow — bright center
+    const coreAlpha = 0.9 * Math.pow(intensity, 0.6);
+    const coreH = h * 0.5;
+    const coreGrad = ctx.createLinearGradient(x, baseY, x, baseY - coreH);
+    coreGrad.addColorStop(0, `rgba(${r},${g},${b},0)`);
+    coreGrad.addColorStop(0.3, `rgba(${r},${g},${b},${coreAlpha * 0.6})`);
+    coreGrad.addColorStop(0.7, `rgba(${Math.min(r+40,255)},${Math.min(g+40,255)},${Math.min(b+40,255)},${coreAlpha})`);
+    coreGrad.addColorStop(1, `rgba(${Math.min(r+60,255)},${Math.min(g+60,255)},${Math.min(b+60,255)},${coreAlpha * 0.8})`);
+    ctx.fillStyle = coreGrad;
+    ctx.fillRect(x, baseY - coreH, segW + 0.5, coreH);
+
+    // Outer glow — softer, taller
+    const outerAlpha = 0.35 * Math.pow(intensity, 0.8);
+    const outerGrad = ctx.createLinearGradient(x, baseY, x, baseY - h);
+    outerGrad.addColorStop(0, `rgba(${r},${g},${b},0)`);
+    outerGrad.addColorStop(0.2, `rgba(${r},${g},${b},${outerAlpha * 0.5})`);
+    outerGrad.addColorStop(0.6, `rgba(${r},${g},${b},${outerAlpha})`);
+    outerGrad.addColorStop(1, `rgba(${r},${g},${b},${outerAlpha * 0.3})`);
+    ctx.fillStyle = outerGrad;
+    ctx.fillRect(x, baseY - h, segW + 0.5, h);
+
+    // Hot white center line for high-intensity areas
+    if (intensity > 0.5) {
+      const whiteAlpha = 0.3 * (intensity - 0.5) * 2;
+      const whiteH = h * 0.15;
+      const whiteGrad = ctx.createLinearGradient(x, baseY, x, baseY - whiteH);
+      whiteGrad.addColorStop(0, `rgba(255,255,255,0)`);
+      whiteGrad.addColorStop(0.5, `rgba(255,255,255,${whiteAlpha})`);
+      whiteGrad.addColorStop(1, `rgba(255,255,255,${whiteAlpha * 0.3})`);
+      ctx.fillStyle = whiteGrad;
+      ctx.fillRect(x, baseY - whiteH, segW + 0.5, whiteH);
+    }
+  }
+
+  // Gas name
+  const hexColor = `rgb(${gas.color[0]},${gas.color[1]},${gas.color[2]})`;
+  ctx.font = '500 15px "DM Sans", sans-serif';
+  ctx.fillStyle = hexColor;
+  ctx.textAlign = 'left';
+  ctx.fillText(gas.name, leftPad + 6, rowTop + 16);
+
+  // GWP and lifetime
+  ctx.font = '300 12px "DM Sans", sans-serif';
+  ctx.fillStyle = textMuted;
+  ctx.textAlign = 'left';
+  ctx.fillText(`${gas.gwpLabel}  ·  ${gas.lifetime}`, leftPad + 6, rowTop + 32);
+
+  // Emissions share and warming share
+  ctx.font = '400 11px "DM Sans", sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.55)';
+  ctx.fillText(`${gas.emissionsShare}  →  ${gas.warmingShare}`, leftPad + 6, rowTop + 47);
+
+  // GWP value large on the right
+  ctx.font = '700 28px "DM Sans", sans-serif';
+  ctx.fillStyle = `rgba(${gas.color[0]},${gas.color[1]},${gas.color[2]},0.15)`;
+  ctx.textAlign = 'right';
+  const bigLabel = gas.gwp === 1 ? '1×' : gas.gwp.toLocaleString() + '×';
+  ctx.fillText(bigLabel, leftPad + plotW - 5, rowTop + 30);
+});
+
+// X-axis tick labels
+ctx.font = '300 13px "DM Sans", sans-serif';
+ctx.fillStyle = textMuted;
+ctx.textAlign = 'center';
+
+const tickLabels = {1: '1 yr', 10: '10', 100: '100', 1000: '1,000', 10000: '10,000'};
+xTicks.forEach(yr => {
+  const x = timeToX(yr);
+  ctx.fillText(tickLabels[yr], x, H - bottomPad + 30);
+});
+
+// X-axis label
+ctx.font = '400 13px "DM Sans", sans-serif';
+ctx.fillStyle = textMuted;
+ctx.textAlign = 'center';
+ctx.fillText('Years in atmosphere (log scale)', W / 2, H - bottomPad + 50);
+
+// Legend dots in header area
+const legendY = 140;
+const legendItems = [
+  { name: 'CH₄', color: gases[0].color },
+  { name: 'N₂O', color: gases[1].color },
+  { name: 'SF₆', color: gases[2].color },
+  { name: 'CO₂', color: gases[3].color },
+];
+
+let legendX = leftPad;
+ctx.font = '400 13px "DM Sans", sans-serif';
+legendItems.forEach((item, i) => {
+  const hex = `rgb(${item.color[0]},${item.color[1]},${item.color[2]})`;
+
+  // Dot
+  ctx.beginPath();
+  ctx.arc(legendX + 6, legendY - 4, 5, 0, Math.PI * 2);
+  ctx.fillStyle = hex;
+  ctx.fill();
+
+  // Label
+  ctx.fillStyle = textMain;
+  ctx.textAlign = 'left';
+  ctx.fillText(item.name, legendX + 16, legendY);
+
+  legendX += ctx.measureText(item.name).width + 40;
+});
+
+// Annotation: Methane
+const ch4AnnotateX = timeToX(12);
+const ch4Row = 0;
+const ch4BaseY = topPad + ch4Row * (rowH + rowGap) + rowH;
+const ch4Decay = getDecay(gases[0], 12);
+const ch4FlameH = (20 + gwpToHeight(83) * (rowH - 55)) * Math.max(ch4Decay, 0.015);
+
+ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+ctx.lineWidth = 0.75;
+ctx.beginPath();
+ctx.moveTo(ch4AnnotateX, ch4BaseY - ch4FlameH - 8);
+ctx.lineTo(ch4AnnotateX, ch4BaseY - ch4FlameH - 45);
+ctx.stroke();
+
+ctx.font = '400 12px "DM Sans", sans-serif';
+ctx.fillStyle = 'rgba(255,255,255,0.6)';
+ctx.textAlign = 'center';
+ctx.fillText('~63% gone after just 12 years', ch4AnnotateX + 60, ch4BaseY - ch4FlameH - 52);
+
+// Annotation: N2O
+const n2oAnnotateX = timeToX(109);
+const n2oRow = 1;
+const n2oBaseY = topPad + n2oRow * (rowH + rowGap) + rowH;
+const n2oDecay = getDecay(gases[1], 109);
+const n2oFlameH = (20 + gwpToHeight(273) * (rowH - 55)) * Math.max(n2oDecay, 0.015);
+
+ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+ctx.lineWidth = 0.75;
+ctx.beginPath();
+ctx.moveTo(n2oAnnotateX, n2oBaseY - n2oFlameH - 8);
+ctx.lineTo(n2oAnnotateX, n2oBaseY - n2oFlameH - 40);
+ctx.stroke();
+
+ctx.font = '400 12px "DM Sans", sans-serif';
+ctx.fillStyle = 'rgba(255,255,255,0.6)';
+ctx.textAlign = 'center';
+ctx.fillText('~63% gone after 109 years', n2oAnnotateX + 50, n2oBaseY - n2oFlameH - 47);
+
+// Annotation: CO2
+const co2AnnotateX = timeToX(5000);
+const co2Row = 3;
+const co2BaseY = topPad + co2Row * (rowH + rowGap) + rowH;
+const co2Decay = getDecay(gases[3], 5000);
+const co2FlameH = (20 + gwpToHeight(1) * (rowH - 55)) * Math.max(co2Decay, 0.015);
+
+ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+ctx.lineWidth = 0.75;
+ctx.beginPath();
+ctx.moveTo(co2AnnotateX, co2BaseY - co2FlameH - 8);
+ctx.lineTo(co2AnnotateX, co2BaseY - co2FlameH - 40);
+ctx.stroke();
+
+ctx.font = '400 12px "DM Sans", sans-serif';
+ctx.fillStyle = 'rgba(255,255,255,0.6)';
+ctx.textAlign = 'center';
+ctx.fillText('~20% still here after 5,000 years', co2AnnotateX, co2BaseY - co2FlameH - 47);
+
+// Annotation: SF6
+const sf6AnnotateX = timeToX(3200);
+const sf6Row = 2;
+const sf6BaseY = topPad + sf6Row * (rowH + rowGap) + rowH;
+const sf6Decay = getDecay(gases[2], 3200);
+const sf6FlameH = (20 + gwpToHeight(16300) * (rowH - 55)) * Math.max(sf6Decay, 0.015);
+
+ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+ctx.lineWidth = 0.75;
+ctx.beginPath();
+ctx.moveTo(sf6AnnotateX, sf6BaseY - sf6FlameH - 8);
+ctx.lineTo(sf6AnnotateX, sf6BaseY - sf6FlameH - 40);
+ctx.stroke();
+
+ctx.font = '400 12px "DM Sans", sans-serif';
+ctx.fillStyle = 'rgba(255,255,255,0.6)';
+ctx.textAlign = 'center';
+ctx.fillText('Still at ~37% after 3,200 years', sf6AnnotateX, sf6BaseY - sf6FlameH - 47);
+
+// Source
+ctx.font = '300 11px "DM Sans", sans-serif';
+ctx.fillStyle = textDim;
+ctx.textAlign = 'left';
+ctx.fillText('Data: IPCC AR6 WG1 (2021), Table 7.15. GWP₂₀ = warming impact of 1 tonne over 20 years, relative to CO₂.', leftPad, H - 35);
+ctx.fillText('CO₂ removal follows IPCC multi-phase model. thelastingwake.com', leftPad, H - 17);
+
+</script>
+</body>
+</html>

@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dummy Data for the Tableau Projects
     const projects = [
         {
+            id: 7,
+            title: "Greenhouse Gases Flame Chart",
+            category: "Climate Forcing",
+            image: "content/images/ghgflamechart-card.png",
+            modalImage: "content/images/ghgflamechart-modal.png",
+            deeperDiveUrl: "content/ghg_flame_chart.html",
+            description: "<p>Not all greenhouse gases are created equal — and this visualization makes that impossible to ignore. Four gases, four flames, one chart: height represents warming power per molecule, length represents how long the gas persists in the atmosphere.</p><p>Methane burns bright and short — 83 times more potent than CO₂ over 20 years, but gone within a decade. SF₆ barely registers in the emissions ledger but lingers for 3,200 years, its flame stretching almost to the edge of the chart. Nitrous oxide sits between them, persistent and punishing. And CO₂, the baseline, draws a long shallow tail that never fully disappears — a permanent fraction locked into the atmosphere for millennia.</p><p>Rendered entirely in canvas with a log-scaled time axis spanning 1 to 10,000 years, the chart uses glowing, decay-weighted flames to turn IPCC atmospheric chemistry into something you can feel at a glance.</p>",
+            software: [
+                { name: "JavaScript", src: "https://cdn.simpleicons.org/javascript/F7DF1E" }
+            ],
+            skills: ["Data Visualization", "Climate Science", "Canvas API"]
+        },
+        {
             id: 6,
             title: "Phoenix is Only Getting Hotter",
             category: "Urban Heat",
@@ -73,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "Tableau", src: "https://img.icons8.com/color/96/tableau-software.png" }
             ],
             skills: ["Web Scraping", "Data Engineering", "Geospatial Analysis"]
-        }
+        },
     ];
 
     const galleryContainer = document.getElementById('gallery-container');
@@ -86,18 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.getElementById('close-modal');
 
     // Generate Gallery Items — Bento Grid with floating animation
-    const floatDurations = [4.2, 3.8, 5.1, 4.6, 3.5, 4.9];
-    const floatDelays    = [0, -1.4, -2.8, -0.7, -3.5, -1.9];
-
     if (galleryContainer) {
-        projects.forEach((project, index) => {
+        projects.forEach((project) => {
             const item = document.createElement('div');
             item.classList.add('gallery-item');
-
-            if (index === 0) item.classList.add('featured');
-
-            item.style.setProperty('--float-duration', `${floatDurations[index] || 4}s`);
-            item.style.setProperty('--float-delay',    `${floatDelays[index] || 0}s`);
 
             item.innerHTML = `
                 <div class="gallery-image-wrapper">
@@ -121,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modal) return;
         modalImage.src = project.modalImage || project.image;
         modalTitle.textContent = project.title;
-        if (deeperDiveLink) deeperDiveLink.href = `content/project-${project.id}.html`;
+        if (deeperDiveLink) deeperDiveLink.href = project.deeperDiveUrl || `content/project-${project.id}.html`;
 
         modalDescription.innerHTML = project.description || '<p>No detailed description available.</p>';
 
